@@ -16,6 +16,10 @@ import Members from "./pages/Members";
 import Landing from "./pages/Landing";
 import About from "./pages/About";
 import Main from "./pages/Main";
+import Projects from "./pages/Projects";
+import Charts from "./pages/Charts";
+import Groups from "./pages/Groups";
+import Settings from "./pages/Settings";
 
 // Even though this is the App.js file, in the end we are not exactly exporting
 // the App component.  We actually set up the app component to implement our react
@@ -49,6 +53,27 @@ function App() {
           <Route exact path="/" render={(props) => <Landing {...props} />} />
           <Route exact path="/about" render={(props) => <About {...props} />} />
           <Route exact path="/main" render={(props) => <Main {...props} />} />
+          <Route
+            exact
+            path="/projects"
+            render={(props) => <Projects {...props} />}
+          />
+          <Route
+            exact
+            path="/charts"
+            render={(props) => <Charts {...props} />}
+          />
+          <Route
+            exact
+            path="/groups"
+            render={(props) => <Groups {...props} />}
+          />
+          <Route
+            exact
+            path="/settings"
+            render={(props) => <Settings {...props} />}
+          />
+
           <Route exact path="/home" render={(props) => <Home {...props} />} />
           <Route exact path="/login" render={(props) => <Login {...props} />} />
           <Route
