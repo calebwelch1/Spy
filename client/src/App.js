@@ -6,6 +6,9 @@ import {
   Redirect,
 } from "react-router-dom";
 import { AuthProvider, AuthContext } from "./AuthContext";
+// Let's try getting theme working
+import { ThemeProvider } from "./components/ThemeContextProvider.js";
+
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -40,17 +43,23 @@ function App() {
   );
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" render={(props) => <Landing {...props} />} />
-        <Route exact path="/about" render={(props) => <About {...props} />} />
-        <Route exact path="/main" render={(props) => <Main {...props} />} />
-        <Route exact path="/home" render={(props) => <Home {...props} />} />
-        <Route exact path="/login" render={(props) => <Login {...props} />} />
-        <Route exact path="/signup" render={(props) => <Signup {...props} />} />
-        <PrivateRoute exact path="/members" component={Members} />
-      </Switch>
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/" render={(props) => <Landing {...props} />} />
+          <Route exact path="/about" render={(props) => <About {...props} />} />
+          <Route exact path="/main" render={(props) => <Main {...props} />} />
+          <Route exact path="/home" render={(props) => <Home {...props} />} />
+          <Route exact path="/login" render={(props) => <Login {...props} />} />
+          <Route
+            exact
+            path="/signup"
+            render={(props) => <Signup {...props} />}
+          />
+          <PrivateRoute exact path="/members" component={Members} />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 

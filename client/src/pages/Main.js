@@ -10,13 +10,21 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
+import HomeIcon from "@material-ui/icons/Home";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
 import GitIcon from "@material-ui/icons/GitHub";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
+
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import DarkThemeButton from "../components/DarkThemeButton";
+// add custom dark theme
+import {
+  useDarkTheme,
+  useDarkThemeUpdate,
+} from "../components/ThemeContextProvider.js";
 
 const drawerWidth = 240;
 
@@ -54,6 +62,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Main(props) {
+  // dark theme
+  const darkTheme = useDarkTheme();
+  const darkStyle = {
+    backgroundColor: darkTheme ? "#333" : "#F5F5F5",
+    color: darkTheme ? "#F5F5F5" : "#333",
+  };
+  const darkIconStyle = {
+    color: darkTheme ? "#F5F5F5" : "#333",
+  };
+  const darkDividerStyle = {
+    color: darkTheme ? "#333" : "#F5F5F5",
+  };
+
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -62,31 +83,35 @@ function Main(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
+  // To effect these components, have to access outside the return
+  // also need to add directly to icons!!!
   const drawer = (
-    <div>
+    <div style={darkStyle}>
       <div className={classes.toolbar} />
-      <Divider />
+      <Divider style={darkDividerStyle} />
       <List>
         <ListItem button>
-          {" "}
-          Hello
           <ListItemIcon>
-            <GitIcon />
+            <HomeIcon style={darkIconStyle} />
           </ListItemIcon>
-          <ListItemText />
+          Home
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <HomeIcon style={darkIconStyle} />
+          </ListItemIcon>
+          Projects
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <HomeIcon style={darkIconStyle} />
+          </ListItemIcon>
+          Charts
         </ListItem>
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+        <ListItem button>Bottom List!</ListItem>
       </List>
     </div>
   );
@@ -95,9 +120,9 @@ function Main(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={darkStyle}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar} style={darkStyle}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -109,8 +134,9 @@ function Main(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Responsive drawer
+            Spy Issue Tracking
           </Typography>
+          <DarkThemeButton />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
@@ -146,21 +172,6 @@ function Main(props) {
       </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
           ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
