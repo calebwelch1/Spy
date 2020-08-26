@@ -235,7 +235,7 @@ function Main(props) {
             </button>
           </Grid>
 
-          <Typography paragraph>PROJECTS</Typography>
+          <Typography paragraph>Issue collections</Typography>
         </Grid>
       </main>
     </div>
