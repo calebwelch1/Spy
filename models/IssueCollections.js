@@ -1,7 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
-  const IssueCollections = sequelize.define("Issue Collections", {
-    // The email cannot be null, and must be a proper email before creation
+  const IssueCollections = sequelize.define("IssueCollections", {
     collectionName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: false,
+    },
+    collectionDescription: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
@@ -11,7 +15,22 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false,
     },
+    issueCollectionId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
   });
-};
+  IssueCollections.associate = function (models) {
+    IssueCollections.belongsTo(models.Projects, {
+      foreignKey: "projectId",
+      targetKey: "projectId",
+    });
+  };
 
-return IssueCollection;
+  IssueCollections.associate = function (models) {
+    IssueCollections.hasMany(models.Issues, {});
+  };
+  return IssueCollections;
+};

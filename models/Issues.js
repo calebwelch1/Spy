@@ -1,41 +1,45 @@
-const { Sequelize } = require(".");
-
 module.exports = function (sequelize, DataTypes) {
-  const Projects = sequelize.define("Projects", {
+  const Issues = sequelize.define("Issues", {
     // The email cannot be null, and must be a proper email before creation
-    projectName: {
+    issueTitle: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
     },
-    projectDescription: {
+    issueBody: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
     },
-    projectComplete: {
+    issueComplete: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false,
     },
-    projectId: {
+    issueInProgress: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
+    issueId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
   });
-  // Associate projects to a user
-  Projects.associate = (models) => {
-    Projects.belongsTo(models.User, {
+  Issues.associate = (models) => {
+    Issues.belongsTo(models.IssueCollections, {
+      foreignKey: "issueId",
+      targetKey: "issueId",
+    });
+  };
+  Issues.associate = (models) => {
+    Issues.belongsTo(models.User, {
       foreignKey: "userId",
       targetKey: "userId",
     });
   };
-  // Associate a collection of issues
-  Projects.associate = function (models) {
-    Projects.hasMany(models.IssueCollections, {});
-  };
-  // Associate issues to a particular collection
-  return Projects;
+
+  return Issues;
 };
