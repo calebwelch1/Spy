@@ -6,6 +6,12 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    commentId: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
   });
   Comments.associate = (models) => {
     Comments.belongsTo(models.User, {

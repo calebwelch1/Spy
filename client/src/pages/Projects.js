@@ -20,6 +20,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import SimplePaperBig from "../components/SimplePaperBig";
+import RenderProjects from "../components/RenderProjects";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
@@ -224,6 +225,7 @@ function Main(props) {
         <Grid container spacing={3}>
           <Grid item xs={4}>
             {/* find way to render projects in user projects db here... */}
+
             {/* find way to route to the project that was created here... */}
             <button
               onClick={(e) => {
@@ -235,7 +237,8 @@ function Main(props) {
             </button>
           </Grid>
 
-          <Typography paragraph>PROJECTS</Typography>
+          <Typography paragraph>PROJECTS: Also adding render here</Typography>
+          <RenderProjects />
         </Grid>
       </main>
     </div>

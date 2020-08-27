@@ -40,7 +40,7 @@ app.get("*", (req, res) => {
 // Sync sequelize models then start Express app
 // =============================================
 db.sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(() => {
     console.log("\n*************************************");
     console.log(`${process.env.DB_NAME} database connected`);
@@ -50,4 +50,18 @@ db.sequelize
       console.log(`App listening on PORT ${PORT}`);
       console.log("*************************************\n");
     });
+  });
+
+db.Projects.create({
+  // enter here the parameters set in the model
+  projectName: "Fix routes",
+  projectDescription: "Router, Sequelize",
+})
+  .then((project) => {
+    // console logging our input
+    console.log(project);
+  })
+  .catch((err) => {
+    // logging if an error occurs
+    console.err(err);
   });

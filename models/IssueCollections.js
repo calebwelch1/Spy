@@ -30,7 +30,9 @@ module.exports = function (sequelize, DataTypes) {
   };
 
   IssueCollections.associate = function (models) {
-    IssueCollections.hasMany(models.Issues, {});
+    IssueCollections.hasMany(models.Issues, {
+      onDelete: "cascade",
+    });
   };
   return IssueCollections;
 };

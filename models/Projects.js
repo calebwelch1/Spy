@@ -24,6 +24,11 @@ module.exports = function (sequelize, DataTypes) {
       autoIncrement: true,
       allowNull: false,
     },
+    public: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
   });
   // Associate projects to a user
   Projects.associate = (models) => {
@@ -34,7 +39,9 @@ module.exports = function (sequelize, DataTypes) {
   };
   // Associate a collection of issues
   Projects.associate = function (models) {
-    Projects.hasMany(models.IssueCollections, {});
+    Projects.hasMany(models.IssueCollections, {
+      onDelete: "cascade",
+    });
   };
   // Associate issues to a particular collection
   return Projects;
