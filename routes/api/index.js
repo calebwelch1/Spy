@@ -5,6 +5,7 @@ router.get("/secrets", isAuthenticated, (req, res) => {
   res.json("Talk is cheap. Show me the code. -Linus Torvalds");
 });
 //==================== User =====================//
+//@@@@ GET ALL
 router.get("/users", (req, res) => {
   db.Projects.findAll({
     order: [["createdAt", "DESC"]],
@@ -15,6 +16,7 @@ router.get("/users", (req, res) => {
     //res.redirect('/profile?userId=2');
   });
 });
+//@@@
 //==================== Projects =====================//
 //@@@@@ get all
 router.get("/projects", (req, res) => {
@@ -27,9 +29,23 @@ router.get("/projects", (req, res) => {
     //res.redirect('/profile?userId=2');
   });
 });
-module.exports = router;
-// get one by id
 
+module.exports = router;
+// @@@@@@get one by id
+router.get("/projects/:id", (req, res) => {
+  db.Projects.findAll({
+    where: {
+      projectId: req.params.id,
+    },
+  })
+    .then((dbProject) => {
+      console.log(dbProject);
+      res.json(dbProject);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 // @@@@@@ create one
 router.post("/projects/create", (req, res) => {
   db.Projects.create({
