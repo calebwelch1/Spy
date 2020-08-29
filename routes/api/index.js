@@ -13,14 +13,13 @@ router.get("/users", (req, res) => {
   }).then((dbusers) => {
     console.log(dbusers);
     res.json(dbusers);
-    //res.redirect('/profile?userId=2');
   });
 });
 //@@@
 //==================== Projects =====================//
 //@@@@@ get all
 router.get("/projects", (req, res) => {
-  db.Projects.findAll({
+  db.Project.findAll({
     order: [["createdAt", "DESC"]],
     limit: 5,
   }).then((dbProjects) => {
@@ -33,9 +32,9 @@ router.get("/projects", (req, res) => {
 module.exports = router;
 // @@@@@@get one by id
 router.get("/projects/:id", (req, res) => {
-  db.Projects.findAll({
+  db.Project.findAll({
     where: {
-      projectId: req.params.id,
+      id: req.params.id,
     },
   })
     .then((dbProject) => {
@@ -48,9 +47,9 @@ router.get("/projects/:id", (req, res) => {
 });
 //@@@@@ delete one
 router.delete("/projects/:id", (req, res) => {
-  db.Projects.destroy({
+  db.Project.destroy({
     where: {
-      projectId: req.params.id,
+      id: req.params.id,
     },
   })
     .then((result) => {
@@ -62,7 +61,7 @@ router.delete("/projects/:id", (req, res) => {
 });
 // @@@@@@ create one
 router.post("/projects/create", (req, res) => {
-  db.Projects.create({
+  db.Project.create({
     projectName: req.body.projectName,
     projectDescription: req.body.projectDescription,
     public: true,
@@ -76,7 +75,7 @@ router.post("/projects/create", (req, res) => {
 });
 //@@@@@@ update by id
 router.put("/projects/update/:id", (req, res) => {
-  db.Projects.update(
+  db.Project.update(
     {
       projectName: req.body.projectName,
       projectDescription: req.body.projectDescription,
@@ -85,12 +84,27 @@ router.put("/projects/update/:id", (req, res) => {
     },
     {
       where: {
-        projectId: req.params.id,
+        id: req.params.id,
       },
     }
   ).then(function (dbPost) {
     res.json(dbPost);
   });
+});
+//@@@@@@@@ get all Projects by a User
+// look up associations and figure this out and you've got most of the backend done
+router.get("/projects:id", (req, res) => {
+  db.Project.findAll({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 //==================== Issues =====================//
 //@@@@ GET all issues

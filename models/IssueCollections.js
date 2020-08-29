@@ -15,18 +15,9 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false,
     },
-    issueCollectionId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false,
-    },
   });
   IssueCollections.associate = function (models) {
-    IssueCollections.belongsTo(models.Projects, {
-      foreignKey: "projectId",
-      targetKey: "projectId",
-    });
+    IssueCollections.belongsTo(models.Project, {});
   };
 
   IssueCollections.associate = function (models) {

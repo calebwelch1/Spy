@@ -21,24 +21,12 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false,
     },
-    issueId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false,
-    },
   });
   Issues.associate = (models) => {
-    Issues.belongsTo(models.IssueCollections, {
-      foreignKey: "issueId",
-      targetKey: "issueId",
-    });
+    Issues.belongsTo(models.IssueCollections, {});
   };
   Issues.associate = (models) => {
-    Issues.belongsTo(models.User, {
-      foreignKey: "userId",
-      targetKey: "userId",
-    });
+    Issues.belongsTo(models.User, {});
   };
 
   return Issues;

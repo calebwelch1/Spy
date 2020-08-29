@@ -27,12 +27,6 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
     },
     //This is the PRIMARYKEY for the users table, name changed to userId by setting PRIMARYKEY to true//
-    userId: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      allowNull: false,
-    },
   });
   User.associate = function (models) {
     User.hasMany(models.Comments, {
@@ -40,7 +34,12 @@ module.exports = function (sequelize, DataTypes) {
     });
   };
   User.associate = function (models) {
-    User.hasMany(models.Projects, {
+    User.hasMany(models.ProjectAgain, {
+      onDelete: "cascade",
+    });
+  };
+  User.associate = function (models) {
+    User.hasMany(models.Project, {
       onDelete: "cascade",
     });
   };

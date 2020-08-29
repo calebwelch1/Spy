@@ -21,6 +21,9 @@ export default {
   updateProject: function (id, updatedProject) {
     return Axios.put(`/api/projects/update/${id}`, updatedProject);
   },
+  getAllProjectsByUser: function (id) {
+    return Axios.get(`/api/projects/${id}`);
+  },
   // ==================================================== Issues
   getIssues: function () {
     return Axios.get("/api/issues");

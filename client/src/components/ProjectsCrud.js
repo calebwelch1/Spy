@@ -9,13 +9,17 @@ function ProjectsCrud(props) {
   const [projects, setProjects] = useState([]);
   // get one
   const [oneProject, setOneProject] = useState([]);
+  // get all by user
+  const [userProjects, setUserProjects] = useState([]);
 
   useEffect(() => {
     // get all
     loadProjects();
     //get one by id
     loadProjectById();
-    deleteProjectById(1);
+    // delete
+    // deleteProjectById(14);
+    // GET ALL BY USER
   }, []);
 
   const loadProjects = () => {
@@ -27,7 +31,7 @@ function ProjectsCrud(props) {
   };
 
   const loadProjectById = () => {
-    const id = 11;
+    const id = 2;
     API.getProjectById(id)
       .then((res) => {
         setOneProject(res.data);
@@ -41,6 +45,12 @@ function ProjectsCrud(props) {
       console.log(res);
     });
   };
+  const loadUserProjects = (id) => {
+    API.getAllProjectsByUser(id).then((res) => {
+      console.log(res);
+    });
+  };
+
   return (
     <div>
       <list>
