@@ -46,12 +46,12 @@ router.get("/projects/:id", (req, res) => {
       res.json(err);
     });
 });
-// @@@@@@ create one
-router.post("/projects/create", (req, res) => {
-  db.Projects.create({
-    projectName: req.body.projectName,
-    projectDescription: req.body.projectDescription,
-    public: req.body.public,
+//@@@@@ delete one
+router.delete("/projects/:id", (req, res) => {
+  db.Projects.destroy({
+    where: {
+      projectId: req.params.id,
+    },
   })
     .then((result) => {
       res.json(result);
@@ -60,20 +60,45 @@ router.post("/projects/create", (req, res) => {
       res.json(err);
     });
 });
-//@@@@@@ update by id?
-router.put("/projects/update:id", (req, res) => {
-  db.Profile.update(
+// @@@@@@ create one
+router.post("/projects/create", (req, res) => {
+  db.Projects.create({
+    projectName: req.body.projectName,
+    projectDescription: req.body.projectDescription,
+    public: true,
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+//@@@@@@ update by id
+router.put("/projects/update/:id", (req, res) => {
+  db.Projects.update(
     {
       projectName: req.body.projectName,
       projectDescription: req.body.projectDescription,
       public: req.body.public,
+      projectComplete: req.body.projectComplete,
     },
     {
       where: {
-        userId: req.params.id,
+        projectId: req.params.id,
       },
     }
   ).then(function (dbPost) {
     res.json(dbPost);
+  });
+});
+//==================== Issues =====================//
+//@@@@ GET all issues
+router.get("/issues", (req, res) => {
+  db.Issues.findAll({
+    order: [["createdAt", "DESC"]],
+  }).then((dbissues) => {
+    console.log(dissues);
+    res.json(dbissues);
   });
 });

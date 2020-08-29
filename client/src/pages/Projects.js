@@ -13,14 +13,15 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import HomeIcon from "@material-ui/icons/Home";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
-import GitIcon from "@material-ui/icons/GitHub";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import SimplePaperBig from "../components/SimplePaperBig";
-import RenderProjects from "../components/RenderProjects";
+import ProjectsCrud from "../components/ProjectsCrud";
+import NewProject from "../components/NewProject";
+import UpdateProject from "../components/UpdateProject";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
@@ -238,7 +239,9 @@ function Main(props) {
           </Grid>
 
           <Typography paragraph>PROJECTS: Also adding render here</Typography>
-          <RenderProjects />
+          <ProjectsCrud />
+          <NewProject />
+          <UpdateProject />
         </Grid>
       </main>
     </div>

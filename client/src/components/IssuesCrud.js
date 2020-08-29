@@ -4,7 +4,7 @@ import API from "../utils/API";
 
 // simple component that I will use for testing routes.
 
-function RenderProjects(props) {
+function ProjectsCrud(props) {
   // get all
   const [projects, setProjects] = useState([]);
   // get one
@@ -15,6 +15,7 @@ function RenderProjects(props) {
     loadProjects();
     //get one by id
     loadProjectById();
+    deleteProjectById(1);
   }, []);
 
   const loadProjects = () => {
@@ -34,7 +35,12 @@ function RenderProjects(props) {
       })
       .catch((err) => console.log(err));
   };
-
+  // delete working!
+  const deleteProjectById = (id) => {
+    API.deleteProjectById(id).then((res) => {
+      console.log(res);
+    });
+  };
   return (
     <div>
       <list>
@@ -61,4 +67,4 @@ function RenderProjects(props) {
   );
 }
 
-export default RenderProjects;
+export default ProjectsCrud;

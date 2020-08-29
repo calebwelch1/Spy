@@ -51,17 +51,3 @@ db.sequelize
       console.log("*************************************\n");
     });
   });
-
-db.Projects.create({
-  // enter here the parameters set in the model
-  projectName: "Fix routes",
-  projectDescription: "Router, Sequelize",
-})
-  .then((project) => {
-    // console logging our input
-    console.log(project);
-  })
-  .catch((err) => {
-    // logging if an error occurs
-    console.err(err);
-  });

@@ -1,18 +1,16 @@
-import React from 'react'
+import React from "react";
 import "../App.css";
 import SignupForm from "../components/SignupForm";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-
+import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
 function Signup(props) {
   return (
     <Container className="signup">
-      <Row>
-        <Col md={{ span: 8, offset: 2 }}>
+      <Grid container spacing={3}>
+        <Grid item xs={8}>
           <SignupForm {...props} />
-        </Col>
-      </Row>
+        </Grid>
+      </Grid>
     </Container>
   );
 }
