@@ -22,6 +22,7 @@ import SimplePaperBig from "../components/SimplePaperBig";
 import ProjectsCrud from "../components/ProjectsCrud";
 import NewProject from "../components/NewProject";
 import UpdateProject from "../components/UpdateProject";
+import ProjectTile from "../components/MockComponents/ProjectTile";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
@@ -238,11 +239,18 @@ function Main(props) {
               <SimplePaperBig />
             </button>
           </Grid>
-
-          <Typography paragraph>PROJECTS: Also adding render here</Typography>
-          <ProjectsCrud />
-          <NewProject />
-          <UpdateProject />
+          <Grid item xs={12}>
+            <Typography paragraph>PROJECTS: Also adding render here</Typography>
+            <ProjectsCrud />
+            <NewProject />
+            <UpdateProject />
+          </Grid>
+          <Grid item xs={6}>
+            <ProjectTile />
+          </Grid>
+          <Grid item xs={6}>
+            <ProjectTile />
+          </Grid>
         </Grid>
       </main>
     </div>
