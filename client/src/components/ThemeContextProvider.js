@@ -24,3 +24,6 @@ export function ThemeProvider({ children }) {
     </ThemeContext.Provider>
   );
 }
+// f5f5f5 is white, use #333 as cards and tiles, use #1c1c1c as background
+
+// when you update theme remember to copy past new styles into all the pages!

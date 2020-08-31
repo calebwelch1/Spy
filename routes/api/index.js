@@ -1,13 +1,15 @@
 const router = require("express").Router();
 const isAuthenticated = require("../../config/middleware/isAuthenticated");
 const db = require("../../models");
+
+//TODO: Issue CRUD, CollectionCRUD, Comment CRUD go backend --> front end
 router.get("/secrets", isAuthenticated, (req, res) => {
   res.json("Talk is cheap. Show me the code. -Linus Torvalds");
 });
 //==================== User =====================//
 //@@@@ GET ALL
 router.get("/users", (req, res) => {
-  db.Projects.findAll({
+  db.User.findAll({
     order: [["createdAt", "DESC"]],
     limit: 5,
   }).then((dbusers) => {
@@ -15,7 +17,17 @@ router.get("/users", (req, res) => {
     res.json(dbusers);
   });
 });
-//@@@
+//@@@ GET One by ID  *******************************************************
+router.get("/users/:id", (req, res) => {
+  db.User.findAll({
+    where: {
+      id: req.params.id,
+    },
+  }).then((dbusers) => {
+    console.log(dbusers);
+    res.json(dbusers);
+  });
+});
 //==================== Projects =====================//
 //@@@@@ get all
 router.get("/projects", (req, res) => {
@@ -35,6 +47,7 @@ router.get("/projects/:id", (req, res) => {
   db.Project.findAll({
     where: {
       id: req.params.id,
+      include: [db.User.id],
     },
   })
     .then((dbProject) => {
@@ -91,9 +104,9 @@ router.put("/projects/update/:id", (req, res) => {
     res.json(dbPost);
   });
 });
-//@@@@@@@@ get all Projects by a User
+//@@@@@@@@ get all Projects by a User **********************************************************************************
 // look up associations and figure this out and you've got most of the backend done
-router.get("/projects:id", (req, res) => {
+router.get("/projects/:id", (req, res) => {
   db.Project.findAll({
     where: {
       id: req.params.id,
@@ -107,12 +120,48 @@ router.get("/projects:id", (req, res) => {
     });
 });
 //==================== Issues =====================//
+// @@@ Create an issue ********************************** Also refuses to work
+// get "User.id cannot be blank error"
+
+router.post("/issues/create", (req, res) => {
+  db.Issue.create({
+    issueTitle: req.body.issueTitle,
+    issueBody: req.body.issueBody,
+    issueComplete: false,
+    issueInProgress: false,
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
 //@@@@ GET all issues
 router.get("/issues", (req, res) => {
-  db.Issues.findAll({
+  db.Issue.findAll({
     order: [["createdAt", "DESC"]],
   }).then((dbissues) => {
-    console.log(dissues);
+    console.log(dbissues);
     res.json(dbissues);
   });
 });
+///================================ Collections
+//@@@@ get all
+router.get("/issuecollections", (req, res) => {
+  db.IssueCollection.findAll({}).then((collections) => {
+    res.json(collections);
+  });
+});
+//@@@get collection by id
+
+//@@ create collection
+router.post("/issuecollections/create", (req, res) => {
+  db.IssueCollection.create({
+    collectionName: req.body.collectionName,
+    collectionDescription: req.body.collectionDescription,
+  }).then((newCollection) => {
+    res.json(newCollection);
+  });
+});
+//@ update collection

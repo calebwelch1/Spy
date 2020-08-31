@@ -6,6 +6,8 @@ const passport = require("passport");
 const bodyParser = require("body-parser");
 const db = require("./models");
 const routes = require("./routes");
+const IssueCollection = require("./models/IssueCollection");
+const Issue = require("./models/Issue");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -51,3 +53,18 @@ db.sequelize
       console.log("*************************************\n");
     });
   });
+// ======================== SEEDS
+db.Project.create({
+  projectName: "hi",
+  projectDescription: "please",
+});
+// can't even create an issue here, still says user constraint
+db.Issue.create({
+  issueName: "its an issue",
+  issueDescription: "sequelize",
+});
+// both projects and collections are fine hmmmm
+db.IssueCollection.create({
+  collectionName: "collection 1",
+  collectionDescription: "collection baby",
+});

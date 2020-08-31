@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  const IssueCollections = sequelize.define("IssueCollections", {
+  const IssueCollection = sequelize.define("IssueCollection", {
     collectionName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -16,14 +16,18 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: false,
     },
   });
-  IssueCollections.associate = function (models) {
-    IssueCollections.belongsTo(models.Project, {});
+  IssueCollection.associate = function (models) {
+    IssueCollection.belongsTo(models.Project, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
 
-  IssueCollections.associate = function (models) {
-    IssueCollections.hasMany(models.Issues, {
+  IssueCollection.associate = function (models) {
+    IssueCollection.hasMany(models.Issue, {
       onDelete: "cascade",
     });
   };
-  return IssueCollections;
+  return IssueCollection;
 };

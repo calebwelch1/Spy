@@ -66,13 +66,13 @@ function ProjectsCrud(props) {
         })}
       </list>
       <p>GET ONE BY ID</p>
-      {oneProject.map((project) => {
+      {/* {oneProject.map((project) => {
         return (
           <p>
             {project.projectName} + {project.projectDescription}
           </p>
         );
-      })}
+      })} */}
     </div>
   );
 }

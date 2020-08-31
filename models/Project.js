@@ -1,3 +1,5 @@
+const { authorize } = require("passport");
+
 module.exports = (sequelize, DataTypes) => {
   const Project = sequelize.define("Project", {
     projectName: {
@@ -22,10 +24,15 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
   Project.associate = (models) => {
-    Project.belongsTo(models.User, {});
+    Project.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false,
+        type: DataTypes.INTEGER,
+      },
+    });
   };
   Project.associate = function (models) {
-    Project.hasMany(models.IssueCollections, {
+    Project.hasMany(models.IssueCollection, {
       onDelete: "cascade",
     });
   };

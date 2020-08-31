@@ -26,18 +26,29 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    issuesCompleteCount: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      default: 0,
+    },
+    projectsCompleteCount: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      default: 0,
+    },
+    commentsCount: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      default: 0,
+    },
     //This is the PRIMARYKEY for the users table, name changed to userId by setting PRIMARYKEY to true//
   });
   User.associate = function (models) {
-    User.hasMany(models.Comments, {
+    User.hasMany(models.Comment, {
       onDelete: "cascade",
     });
   };
-  User.associate = function (models) {
-    User.hasMany(models.ProjectAgain, {
-      onDelete: "cascade",
-    });
-  };
+
   User.associate = function (models) {
     User.hasMany(models.Project, {
       onDelete: "cascade",

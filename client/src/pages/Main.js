@@ -66,14 +66,14 @@ function Main(props) {
   // dark theme
   const darkTheme = useDarkTheme();
   const darkStyle = {
-    backgroundColor: darkTheme ? "#333" : "#F5F5F5",
-    color: darkTheme ? "#F5F5F5" : "#333",
+    backgroundColor: darkTheme ? "#1c1c1c" : "#F5F5F5",
+    color: darkTheme ? "#F5F5F5" : "#1c1c1c",
   };
   const darkIconStyle = {
-    color: darkTheme ? "#F5F5F5" : "#333",
+    color: darkTheme ? "#F5F5F5" : "#1c1c1c",
   };
   const darkDividerStyle = {
-    color: darkTheme ? "#333" : "#F5F5F5",
+    color: darkTheme ? "#1c1c1c" : "#F5F5F5",
   };
 
   const { window } = props;

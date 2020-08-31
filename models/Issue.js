@@ -1,33 +1,37 @@
 module.exports = function (sequelize, DataTypes) {
-  const Issues = sequelize.define("Issues", {
+  const Issue = sequelize.define("Issue", {
     // The email cannot be null, and must be a proper email before creation
-    issueTitle: {
+    issueName: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
     },
-    issueBody: {
+    issueDescription: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: false,
     },
     issueComplete: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       defaultValue: false,
     },
     issueInProgress: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
+      allowNull: true,
       defaultValue: false,
     },
   });
-  Issues.associate = (models) => {
-    Issues.belongsTo(models.IssueCollections, {});
+  Issue.associate = (models) => {
+    Issue.belongsTo(models.IssueCollection, {});
   };
-  Issues.associate = (models) => {
-    Issues.belongsTo(models.User, {});
+  Issue.associate = (models) => {
+    Issue.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
 
-  return Issues;
+  return Issue;
 };
