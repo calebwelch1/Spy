@@ -136,18 +136,7 @@ function Main(props) {
           </ListItemIcon>
           Groups
         </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/charts");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Charts
-        </ListItem>
+
         <ListItem
           button
           onClick={(e) => {

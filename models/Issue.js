@@ -23,7 +23,11 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
   Issue.associate = (models) => {
-    Issue.belongsTo(models.IssueCollection, {});
+    Issue.belongsTo(models.IssueCollection, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
   };
   Issue.associate = (models) => {
     Issue.belongsTo(models.User, {

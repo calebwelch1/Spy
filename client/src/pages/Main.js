@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -18,6 +18,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+// get user auth/ id!
+import { AuthProvider, AuthContext } from "../AuthContext";
 
 import HomeTile from "../components/MockComponents/MenuTile";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -67,6 +69,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Main(props) {
+  const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
+
   // dark theme
   const darkTheme = useDarkTheme();
   const darkStyle = {
@@ -130,18 +134,6 @@ function Main(props) {
             <HomeIcon style={darkIconStyle} />
           </ListItemIcon>
           Groups
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/charts");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Charts
         </ListItem>
         <ListItem
           button
@@ -221,7 +213,7 @@ function Main(props) {
         <div className={classes.toolbar} />
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <HomeTile body="User Bar" />
+            <HomeTile body={"PLEASE RENDER"} />
           </Grid>
           <Grid item xs={6} md={3}>
             <HomeTile body="Nav" />

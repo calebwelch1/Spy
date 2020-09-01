@@ -2,6 +2,9 @@ import Axios from "axios";
 // need help with create project, only know how to get/ get by id. need to make for all and make delete routes...
 // also need get all by user/get all from project etc.
 export default {
+  getUserId: function () {
+    return Axios.get("/api/auth/user_data");
+  },
   getUsers: function () {
     return Axios.get("/api/users");
   },

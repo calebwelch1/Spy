@@ -1,35 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import { Redirect } from "react-router-dom";
 
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isAuth, setIsAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(false);
+  const [userId, setUserId] = useState([]);
+  // modifying to also set user id to state when authorized
 
-    useEffect(() => {
-        checkAuth()
-    }, [])
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
-    const checkAuth = async () => {
-        Axios.get('api/auth/user_data')
-            .then(response => {
-                if (response.data.email) {
-                    setIsAuth(true)
-                } else {
-                    setIsAuth(false)
-                }
-            })
-    }
+  const checkAuth = async () => {
+    Axios.get("api/auth/user_data").then((response) => {
+      if (response.data.email) {
+        setUserId(response);
 
-    const logout = async () => {
-        Axios.get("/api/auth/logout")
-          .then(() => {
-            setIsAuth(false);
-            return <Redirect to='/' />
-          })
-          .catch(err => console.log(err));
-      };
+        setIsAuth(true);
+        console.log(`Auth response ${response}`);
+      } else {
+        setIsAuth(false);
+      }
+    });
+  };
 
-    return <AuthContext.Provider value={{ isAuth, setIsAuth, checkAuth, logout }}>{children}</AuthContext.Provider>;
+  const logout = async () => {
+    Axios.get("/api/auth/logout")
+      .then(() => {
+        setIsAuth(false);
+        return <Redirect to="/" />;
+      })
+      .catch((err) => console.log(err));
+  };
+
+  return (
+    <AuthContext.Provider
+      value={{ isAuth, setIsAuth, checkAuth, logout, userId, setUserId }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
