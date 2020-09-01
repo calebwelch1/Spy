@@ -18,7 +18,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-import SimplePaperBig from "../components/SimplePaperBig";
 import ProjectsCrud from "../components/ProjectsCrud";
 import NewProject from "../components/NewProject";
 import UpdateProject from "../components/UpdateProject";
@@ -230,14 +229,6 @@ function Main(props) {
             {/* find way to render projects in user projects db here... */}
 
             {/* find way to route to the project that was created here... */}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                props.history.push("/members");
-              }}
-            >
-              <SimplePaperBig />
-            </button>
           </Grid>
           <Grid item xs={12}>
             <Typography paragraph>PROJECTS: Also adding render here</Typography>

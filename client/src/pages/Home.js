@@ -5,13 +5,12 @@ import { Container, Row, Button, Col } from "react-bootstrap";
 import Axios from "axios";
 
 function Home(props) {
-  
   const { isAuth, logout } = useContext(AuthContext);
 
   const [secret, setSecret] = useState("");
 
   // this function is duplicated in the Members page component
-  // consider refactor 
+  // consider refactor
   const getSecret = async () => {
     const secretResponse = await Axios.get("/api/secrets");
     console.log(secretResponse.data);
@@ -22,14 +21,14 @@ function Home(props) {
     <Container className="signup">
       <Row>
         <Col md={{ span: 8, offset: 2 }}>
-          <h1>Home Page</h1>
+          <h1>Welcome to Spy Issue Tracker</h1>
           {isAuth ? (
             <>
               <Button
                 className="m-1"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
-                  setSecret('');
+                  setSecret("");
                   logout();
                 }}
               >
@@ -37,7 +36,7 @@ function Home(props) {
               </Button>
               <Button
                 className="m-1"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   props.history.push("/members");
                 }}
@@ -49,7 +48,7 @@ function Home(props) {
             <>
               <Button
                 className="m-1"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   props.history.push("/login");
                 }}
@@ -58,7 +57,7 @@ function Home(props) {
               </Button>
               <Button
                 className="m-1"
-                onClick={e => {
+                onClick={(e) => {
                   e.preventDefault();
                   props.history.push("/signup");
                 }}
@@ -69,7 +68,7 @@ function Home(props) {
           )}
           <Button
             className="m-1"
-            onClick={e => {
+            onClick={(e) => {
               e.preventDefault();
               getSecret();
             }}

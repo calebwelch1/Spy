@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import SpringSlowFade from "../components/SpringSlowFade";
+import SpringModal from "../components/SpringModal";
 
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
@@ -72,6 +73,7 @@ export default function Landing(props) {
         </Grid>
         <Grid item xs={6}>
           <SpringSlowFade />
+          <SpringModal></SpringModal>
           <Button
             className="m-1"
             onClick={(e) => {

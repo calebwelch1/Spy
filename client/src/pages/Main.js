@@ -19,6 +19,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
+import HomeTile from "../components/MockComponents/MenuTile";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
 // add custom dark theme
@@ -59,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  white: {
+    color: "#fff",
   },
 }));
 
@@ -217,41 +221,36 @@ function Main(props) {
         <div className={classes.toolbar} />
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>xs=12</Paper>
+            <HomeTile body="User Bar" />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper className={classes.paper}>xs=12 sm=6</Paper>
+          <Grid item xs={6} md={3}>
+            <HomeTile body="Nav" />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper className={classes.paper}>xs=12 sm=6</Paper>
+          <Grid item xs={6} md={3}>
+            <HomeTile body="Nav"></HomeTile>
           </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
+          <Grid item xs={6} md={3}>
+            <HomeTile body="Nav" />
           </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
+          <Grid item xs={6} md={3}>
+            <HomeTile body="Nav" />
           </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
+          <Grid item xs={12} md={4}>
+            <HomeTile body="Stats" />
           </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
+          <Grid item xs={12} md={4}>
+            <HomeTile body="Stats"></HomeTile>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <HomeTile body="Stats" />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <HomeTile body="charts" />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <HomeTile body="charts" />
           </Grid>
         </Grid>
-        <Typography paragraph>
-          Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
-          ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
-          elementum integer enim neque volutpat ac tincidunt. Ornare suspendisse
-          sed nisi lacus sed viverra tellus. Purus sit amet volutpat consequat
-          mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis
-          risus sed vulputate odio. Morbi tincidunt ornare massa eget egestas
-          purus viverra accumsan in. In hendrerit gravida rutrum quisque non
-          tellus orci ac. Pellentesque nec nam aliquam sem et tortor. Habitant
-          morbi tristique senectus et. Adipiscing elit duis tristique
-          sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-          eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-          posuere sollicitudin aliquam ultrices sagittis orci a.
-        </Typography>
       </main>
     </div>
   );
