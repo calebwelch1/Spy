@@ -8,6 +8,9 @@ export default {
   getUsers: function () {
     return Axios.get("/api/users");
   },
+  getUserbyId: function (id) {
+    return Axios.get(`/api/users/${id}`);
+  },
   // ==================================================== Projects
   getProjects: function () {
     return Axios.get("/api/projects");

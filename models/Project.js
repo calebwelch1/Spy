@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: 0,
     },
+    img: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      defaultValue: 0,
+    },
   });
   Project.associate = (models) => {
     Project.belongsTo(models.User);

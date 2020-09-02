@@ -22,6 +22,7 @@ import ProjectsCrud from "../components/ProjectsCrud";
 import NewProject from "../components/NewProject";
 import UpdateProject from "../components/UpdateProject";
 import ProjectTile from "../components/MockComponents/ProjectTile";
+import RenderUserProjects from "../components/RenderUserProjects";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
@@ -214,23 +215,10 @@ function Main(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Grid container spacing={3}>
-          <Grid item xs={4}>
-            {/* find way to render projects in user projects db here... */}
-
-            {/* find way to route to the project that was created here... */}
-          </Grid>
           <Grid item xs={12}>
-            <Typography paragraph>PROJECTS: Also adding render here</Typography>
-            <ProjectsCrud />
             <NewProject />
-            <UpdateProject />
           </Grid>
-          <Grid item xs={6}>
-            <ProjectTile />
-          </Grid>
-          <Grid item xs={6}>
-            <ProjectTile />
-          </Grid>
+          <RenderUserProjects />
         </Grid>
       </main>
     </div>

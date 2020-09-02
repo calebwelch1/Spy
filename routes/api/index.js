@@ -13,7 +13,6 @@ router.get("/users", (req, res) => {
     order: [["createdAt", "DESC"]],
     limit: 5,
   }).then((dbusers) => {
-    console.log(dbusers);
     res.json(dbusers);
   });
 });
@@ -24,7 +23,6 @@ router.get("/users/:id", (req, res) => {
       id: req.params.id,
     },
   }).then((dbusers) => {
-    console.log(dbusers);
     res.json(dbusers);
   });
 });
@@ -35,7 +33,7 @@ router.get("/projects", (req, res) => {
     order: [["createdAt", "DESC"]],
     limit: 5,
   }).then((dbProjects) => {
-    console.log(dbProjects);
+    // console.log(dbProjects);
     res.json(dbProjects);
     //res.redirect('/profile?userId=2');
   });
@@ -51,7 +49,7 @@ router.get("/projects/:id", (req, res) => {
     },
   })
     .then((dbProject) => {
-      console.log(dbProject);
+      // console.log(dbProject);
       res.json(dbProject);
     })
     .catch((err) => {
@@ -79,6 +77,7 @@ router.post("/projects/create", (req, res) => {
     projectDescription: req.body.projectDescription,
     public: true,
     userLink: req.body.userLink,
+    _id: req.body.userLink,
   })
     .then((result) => {
       res.json(result);
@@ -143,7 +142,7 @@ router.get("/issues", (req, res) => {
   db.Issue.findAll({
     order: [["createdAt", "DESC"]],
   }).then((dbissues) => {
-    console.log(dbissues);
+    // console.log(dbissues);
     res.json(dbissues);
   });
 });
