@@ -22,14 +22,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: true,
     },
+    userLink: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0,
+    },
   });
   Project.associate = (models) => {
-    Project.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false,
-        type: DataTypes.INTEGER,
-      },
-    });
+    Project.belongsTo(models.User);
   };
   Project.associate = function (models) {
     Project.hasMany(models.IssueCollection, {

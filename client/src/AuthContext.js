@@ -11,15 +11,14 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [isAuth]);
 
   const checkAuth = async () => {
     Axios.get("api/auth/user_data").then((response) => {
+      setUserId(response.data.id);
       if (response.data.email) {
-        setUserId(response);
-
         setIsAuth(true);
-        console.log(`Auth response ${response}`);
+        // console.log("Auth response:", response);
       } else {
         setIsAuth(false);
       }

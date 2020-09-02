@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useInput } from "./hooks/inputHook";
 import Form from "react-bootstrap/Form";
 import Label from "@material-ui/core/FormLabel";
 import Input from "@material-ui/core/Input";
 import Paper from "@material-ui/core/Paper";
 import API from "../utils/API";
+import { AuthProvider, AuthContext } from "../AuthContext";
 
 export default function NewProject(props) {
+  const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
+
   const {
     value: projectName,
     bind: bindProjectName,
@@ -30,6 +33,7 @@ export default function NewProject(props) {
     const newProject = {
       projectName: projectName,
       projectDescription: projectDescription,
+      userLink: userId,
     };
     API.createProject(newProject)
       .then((res) => {

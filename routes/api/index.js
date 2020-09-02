@@ -78,6 +78,7 @@ router.post("/projects/create", (req, res) => {
     projectName: req.body.projectName,
     projectDescription: req.body.projectDescription,
     public: true,
+    userLink: req.body.userLink,
   })
     .then((result) => {
       res.json(result);
@@ -106,10 +107,10 @@ router.put("/projects/update/:id", (req, res) => {
 });
 //@@@@@@@@ get all Projects by a User **********************************************************************************
 // look up associations and figure this out and you've got most of the backend done
-router.get("/projects/:id", (req, res) => {
+router.get("/user/projects/:id", (req, res) => {
   db.Project.findAll({
     where: {
-      id: req.params.id,
+      userLink: req.params.id,
     },
   })
     .then((result) => {

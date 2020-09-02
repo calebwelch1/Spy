@@ -54,17 +54,17 @@ db.sequelize
     });
   });
 // ======================== SEEDS
-db.Project.create({
-  projectName: "hi",
-  projectDescription: "please",
-});
-// can't even create an issue here, still says user constraint
-db.Issue.create({
-  issueName: "its an issue",
-  issueDescription: "sequelize",
-});
-// both projects and collections are fine hmmmm
-db.IssueCollection.create({
-  collectionName: "collection 1",
-  collectionDescription: "collection baby",
-});
+// db.Project.create({
+//   projectName: "hi",
+//   projectDescription: "please",
+// });
+// // can't even create an issue here, still says user constraint
+// db.Issue.create({
+//   issueName: "its an issue",
+//   issueDescription: "sequelize",
+// });
+// // both projects and collections are fine hmmmm
+// db.IssueCollection.create({
+//   collectionName: "collection 1",
+//   collectionDescription: "collection baby",
+// });

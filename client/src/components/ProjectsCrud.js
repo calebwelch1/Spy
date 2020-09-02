@@ -20,6 +20,7 @@ function ProjectsCrud(props) {
     // delete
     // deleteProjectById(14);
     // GET ALL BY USER
+    loadUserProjects(1);
   }, []);
 
   const loadProjects = () => {
@@ -35,19 +36,18 @@ function ProjectsCrud(props) {
     API.getProjectById(id)
       .then((res) => {
         setOneProject(res.data);
-        console.log("projectIDRoute", res.data);
+        // console.log("projectIDRoute", res.data);
       })
       .catch((err) => console.log(err));
   };
   // delete working!
   const deleteProjectById = (id) => {
-    API.deleteProjectById(id).then((res) => {
-      console.log(res);
-    });
+    API.deleteProjectById(id).then((res) => {});
   };
   const loadUserProjects = (id) => {
     API.getAllProjectsByUser(id).then((res) => {
-      console.log(res);
+      setUserProjects(res.data);
+      console.log("all user projects", res);
     });
   };
 
@@ -73,6 +73,14 @@ function ProjectsCrud(props) {
           </p>
         );
       })} */}
+      <p>Get all by User ID!</p>
+      {userProjects.map((project) => {
+        return (
+          <p>
+            {project.projectName} + {project.projectDescription}
+          </p>
+        );
+      })}
     </div>
   );
 }

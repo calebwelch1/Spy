@@ -214,6 +214,8 @@ function Main(props) {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <HomeTile body={"PLEASE RENDER"} />
+            {/* How I'm getting the user id for the projects lmfao */}
+            {JSON.stringify(userId)}
           </Grid>
           <Grid item xs={6} md={3}>
             <HomeTile body="Nav" />
