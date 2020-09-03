@@ -6,6 +6,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
+    userLink: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 999,
+    },
   });
   Comment.associate = (models) => {
     Comment.belongsTo(models.User, {});

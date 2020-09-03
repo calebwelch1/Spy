@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -23,6 +23,10 @@ import NewProject from "../components/NewProject";
 import UpdateProject from "../components/UpdateProject";
 import ProjectTile from "../components/MockComponents/ProjectTile";
 import RenderUserProjects from "../components/RenderUserProjects";
+import RenderSeedProjects from "../components/RenderSeedProjects";
+import RenderProjectsConditional from "../components/RenderProjectsConditional";
+
+import { AuthProvider, AuthContext } from "../AuthContext";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
@@ -72,6 +76,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Main(props) {
+  const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
+
   // dark theme
   // f5f5f5 is white, use #333 as cards and tiles, use #1c1c1c as background
   const darkTheme = useDarkTheme();
@@ -218,7 +224,7 @@ function Main(props) {
           <Grid item xs={12}>
             <NewProject />
           </Grid>
-          <RenderUserProjects />
+          <RenderProjectsConditional {...props} />
         </Grid>
       </main>
     </div>

@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
     userLink: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: 0,
+      defaultValue: 999,
     },
     img: {
       type: DataTypes.STRING,

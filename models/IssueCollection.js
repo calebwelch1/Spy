@@ -15,6 +15,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       defaultValue: false,
     },
+    projectLink: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 999,
+    },
   });
   IssueCollection.associate = function (models) {
     IssueCollection.belongsTo(models.Project, {

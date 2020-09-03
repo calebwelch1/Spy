@@ -21,21 +21,17 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       defaultValue: false,
     },
+    collectionLink: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 999,
+    },
+    userLink: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 999,
+    },
   });
-  Issue.associate = (models) => {
-    Issue.belongsTo(models.IssueCollection, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
-  };
-  Issue.associate = (models) => {
-    Issue.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
-  };
 
   return Issue;
 };

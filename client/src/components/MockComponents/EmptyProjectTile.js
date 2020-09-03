@@ -117,7 +117,15 @@ export const EmptyProjectTile = React.memo(function BlogCard(props) {
           heading={<p className={styles.white}> {props.heading}</p>}
           body={<p className={styles.white}>{props.body}</p>}
         />
-        <Button className={buttonStyles}>Go To Project</Button>
+        <Button
+          className={buttonStyles}
+          onClick={(e) => {
+            e.preventDefault();
+            props.history.push("/projectview");
+          }}
+        >
+          Go To Project
+        </Button>
       </CardContent>
     </Card>
   );
