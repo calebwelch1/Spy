@@ -29,6 +29,7 @@ function RenderSeedProjects(props) {
               body={project.projectDescription}
               heading={project.projectName}
               author={`by Luke Cage`}
+              id={project.id}
               // route to new page where issue collection loads.
             />
           </Grid>

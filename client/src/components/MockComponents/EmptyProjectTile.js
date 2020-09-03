@@ -121,7 +121,7 @@ export const EmptyProjectTile = React.memo(function BlogCard(props) {
           className={buttonStyles}
           onClick={(e) => {
             e.preventDefault();
-            props.history.push("/projectview");
+            props.history.push(`/projectview/${props.id}`);
           }}
         >
           Go To Project

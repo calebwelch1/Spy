@@ -153,8 +153,16 @@ router.get("/issuecollections", (req, res) => {
     res.json(collections);
   });
 });
-//@@@get collection by id
-
+//@@@get collections by project id
+router.get("/issuecollections/:id", (req, res) => {
+  db.IssueCollection.findAll({
+    where: {
+      projectLink: req.params.id,
+    },
+  }).then((collections) => {
+    res.json(collections);
+  });
+});
 //@@ create collection
 router.post("/issuecollections/create", (req, res) => {
   db.IssueCollection.create({

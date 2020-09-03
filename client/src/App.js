@@ -82,7 +82,6 @@ function App() {
             render={(props) => <Signup {...props} />}
           />
           <Route
-            exact
             path="/projectview"
             render={(props) => <ProjectView {...props} />}
           />

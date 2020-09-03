@@ -34,4 +34,8 @@ export default {
   getIssues: function () {
     return Axios.get("/api/issues");
   },
+  // ==================================================== Collections
+  getCollectionsByProjectId: function (id) {
+    return Axios.get(`/api/issuecollections/${id}`);
+  },
 };

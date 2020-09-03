@@ -52,43 +52,43 @@ db.sequelize
       console.log(`App listening on PORT ${PORT}`);
       console.log("*************************************\n");
     });
-  })
-  .then(() => {
-    // ======================== SEEDS
-    db.Project.create({
-      projectName: "Create Project Tracking Application",
-      projectDescription:
-        "Design and build an application that helps individuals and organizations track projects or issues within ongoing projects",
-      userLink: 999,
-    });
-    db.Project.create({
-      projectName: "Read Animal Farm & 1984 by George Orwell",
-      //force a description length, if not long enough creates weirdly sized card
-
-      projectDescription:
-        "Read and analyze the classic novels Animal Farm and 1984 by George Orwell",
-      userLink: 999,
-    });
-    db.IssueCollection.create({
-      collectionName: "Build Front End",
-      collectionDescription:
-        "Front end of the project: components, styling, design, UX/UI",
-      projectLink: 1,
-    });
-    db.IssueCollection.create({
-      collectionName: "Build Back End",
-      collectionDescription:
-        "Back end of the project: Sequelize database, express routes, computations",
-      projectLink: 1,
-    });
-    db.Issue.create({
-      issueName: "Design",
-      issueDescription:
-        "Overall Design of the project needs to be appealing. Look towards other handheld design for inspiration",
-      collectionLink: 1,
-      userLink: 999,
-    });
   });
+// .then(() => {
+//   // ======================== SEEDS
+//   db.Project.create({
+//     projectName: "Create Project Tracking Application",
+//     projectDescription:
+//       "Design and build an application that helps individuals and organizations track projects or issues within ongoing projects",
+//     userLink: 999,
+//   });
+//   db.Project.create({
+//     projectName: "Read Animal Farm & 1984 by George Orwell",
+//     //force a description length, if not long enough creates weirdly sized card
+
+//     projectDescription:
+//       "Read and analyze the classic novels Animal Farm and 1984 by George Orwell",
+//     userLink: 999,
+//   });
+//   db.IssueCollection.create({
+//     collectionName: "Build Front End",
+//     collectionDescription:
+//       "Front end of the project: components, styling, design, UX/UI",
+//     projectLink: 1,
+//   });
+//   db.IssueCollection.create({
+//     collectionName: "Build Back End",
+//     collectionDescription:
+//       "Back end of the project: Sequelize database, express routes, computations",
+//     projectLink: 1,
+//   });
+//   db.Issue.create({
+//     issueName: "Design",
+//     issueDescription:
+//       "Overall Design of the project needs to be appealing. Look towards other handheld design for inspiration",
+//     collectionLink: 1,
+//     userLink: 999,
+//   });
+// });
 
 // // can't even create an issue here, still says user constraint
 

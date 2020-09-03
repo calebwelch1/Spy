@@ -43,6 +43,8 @@ function RenderUserProjects() {
               body={project.projectDescription}
               heading={project.projectName}
               author={`by ${author}`}
+              id={project.id}
+
               // route to new page where issue collection loads.
               //   route={}
             />
