@@ -23,16 +23,9 @@
   },
   "homepage": "https://github.com/kylewhittemore/react-sequelize-template#readme",
   "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/icons": "^4.9.1",
-    "@mui-treasury/components": "^1.9.1",
-    "@mui-treasury/styles": "^1.13.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
     "axios": "^0.19.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
@@ -42,15 +35,7 @@
     "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "react-bootstrap": "^1.0.0-beta.16",
-    "react-player": "^2.6.0",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-spring": "^8.0.27",
-    "react-typist": "^2.0.5",
-    "sequelize": "^5.21.3",
-    "styled-components": "^5.1.1"
+    "sequelize": "^5.21.3"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
