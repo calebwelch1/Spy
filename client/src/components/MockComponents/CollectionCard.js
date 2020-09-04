@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Color from "color";
 import { makeStyles } from "@material-ui/core/styles";
 import NoSsr from "@material-ui/core/NoSsr";
@@ -77,7 +77,7 @@ const CustomCard = ({ classes, image, title, subtitle }) => {
   );
 };
 
-export const CollectionCard = React.memo(function SolidGameCard() {
+export const EmptyCollectionCard = React.memo(function SolidGameCard(props) {
   const gridStyles = useGridStyles();
   const styles = useStyles({ color: "#203f52" });
   const styles2 = useStyles({ color: "#4d137f" });
@@ -89,8 +89,8 @@ export const CollectionCard = React.memo(function SolidGameCard() {
         <Grid item>
           <CustomCard
             classes={styles}
-            title={"Dota 2"}
-            subtitle={"Be a Legend!"}
+            title={props.title}
+            subtitle={props.subtitle}
             image={
               "https://steamcdn-a.akamaihd.net/apps/dota2/images/blog/play/dota_heroes.png"
             }
@@ -110,4 +110,4 @@ export const CollectionCard = React.memo(function SolidGameCard() {
     </>
   );
 });
-export default CollectionCard;
+export default EmptyCollectionCard;

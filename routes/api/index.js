@@ -168,6 +168,7 @@ router.post("/issuecollections/create", (req, res) => {
   db.IssueCollection.create({
     collectionName: req.body.collectionName,
     collectionDescription: req.body.collectionDescription,
+    projectLink: req.body.projectLink,
   }).then((newCollection) => {
     res.json(newCollection);
   });

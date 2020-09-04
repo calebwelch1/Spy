@@ -38,4 +38,7 @@ export default {
   getCollectionsByProjectId: function (id) {
     return Axios.get(`/api/issuecollections/${id}`);
   },
+  createCollection: function (newCollection) {
+    return Axios.post("/api/issuecollections/create", newCollection);
+  },
 };
