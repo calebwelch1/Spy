@@ -56,19 +56,22 @@ db.sequelize
 // .then(() => {
 //   // ======================== SEEDS
 //   db.Project.create({
+//     _id: 1,
 //     projectName: "Create Project Tracking Application",
 //     projectDescription:
 //       "Design and build an application that helps individuals and organizations track projects or issues within ongoing projects",
 //     userLink: 999,
 //   });
-//   db.Project.create({
-//     projectName: "Read Animal Farm & 1984 by George Orwell",
-//     //force a description length, if not long enough creates weirdly sized card
+//   // db.Project.create({
+//   //   projectName: "Read Animal Farm & 1984 by George Orwell",
+//   //   //force a description length, if not long enough creates weirdly sized card
 
-//     projectDescription:
-//       "Read and analyze the classic novels Animal Farm and 1984 by George Orwell",
-//     userLink: 999,
-//   });
+//   //   projectDescription:
+//   //     "Read and analyze the classic novels Animal Farm and 1984 by George Orwell",
+//   //   userLink: 999,
+//   // });
+// })
+// .then(() => {
 //   db.IssueCollection.create({
 //     collectionName: "Build Front End",
 //     collectionDescription:
@@ -81,12 +84,45 @@ db.sequelize
 //       "Back end of the project: Sequelize database, express routes, computations",
 //     projectLink: 1,
 //   });
+// })
+// // .then(() => {
+// //   // db.IssueCollection.create({
+// //   //   collectionName: "Analyze Characters",
+// //   //   collectionDescription: "Analyze the characters of 1984",
+// //   //   projectLink: 2,
+// //   // });
+// //   db.IssueCollection.create({
+// //     collectionName: "Analyze Themes",
+// //     collectionDescription: "Analyze the themes of 1984",
+// //     projectLink: 2,
+// //   });
+// // })
+// .then(() => {
+//   // db.Issue.create({
+//   //   issueName: "Design",
+//   //   issueDescription:
+//   //     "Overall Design of the project needs to be appealing. Look towards other handheld design for inspiration",
+//   //   collectionLink: 1,
+//   //   userLink: 999,
+//   // });
 //   db.Issue.create({
-//     issueName: "Design",
+//     issueName: "Routes",
 //     issueDescription:
-//       "Overall Design of the project needs to be appealing. Look towards other handheld design for inspiration",
+//       "Must use express router to build the routes to my database",
 //     collectionLink: 1,
 //     userLink: 999,
+//   });
+// })
+// .then(() => {
+//   // db.Comment.create({
+//   //   comment:
+//   //     "Checking out handheld card and cigarette packaging for inspiration on how to design an attractive ui",
+//   //   issueLink: 1,
+//   // });
+//   db.Comment.create({
+//     comment:
+//       "Need to build associations between database models so that I can cross reference user data",
+//     issueLink: 1,
 //   });
 // });
 

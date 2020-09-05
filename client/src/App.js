@@ -21,6 +21,7 @@ import Charts from "./pages/Charts";
 import Groups from "./pages/Groups";
 import Settings from "./pages/Settings";
 import ProjectView from "./pages/ProjectView";
+import CollectionView from "./pages/CollectionView";
 
 // Even though this is the App.js file, in the end we are not exactly exporting
 // the App component.  We actually set up the app component to implement our react
@@ -84,6 +85,10 @@ function App() {
           <Route
             path="/projectview"
             render={(props) => <ProjectView {...props} />}
+          />
+          <Route
+            path="/collection"
+            render={(props) => <CollectionView {...props} />}
           />
           <PrivateRoute exact path="/members" component={Members} />
         </Switch>

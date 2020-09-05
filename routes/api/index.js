@@ -146,6 +146,17 @@ router.get("/issues", (req, res) => {
     res.json(dbissues);
   });
 });
+//@@@@ Get issues by collection Link
+router.get("/issues/:id", (req, res) => {
+  db.Issue.findAll({
+    where: {
+      collectionLink: req.params.id,
+    },
+  }).then((issues) => {
+    res.json(issues);
+  });
+});
+//@@@@ Get issues by User
 ///================================ Collections
 //@@@@ get all
 router.get("/issuecollections", (req, res) => {
@@ -174,3 +185,14 @@ router.post("/issuecollections/create", (req, res) => {
   });
 });
 //@ update collection
+///================================ Collections
+//@@@@ Get comments by issue id
+router.get("/comments/:id", (req, res) => {
+  db.Comment.findAll({
+    where: {
+      issueLink: req.params.id,
+    },
+  }).then((comments) => {
+    res.json(comments);
+  });
+});

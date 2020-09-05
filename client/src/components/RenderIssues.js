@@ -1,41 +1,42 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import EmptyCollectionTile from "./MockComponents/EmptyCollectionTile";
+import EmptyIssueTile from "./MockComponents/EmptyIssueTile";
 import Grid from "@material-ui/core/Grid";
 
-function RenderCollection(props) {
+function RenderIssues(props) {
   useEffect(() => {
-    loadCollections(currentProjectId);
+    loadIssues(currentCollectionId);
   }, []);
-  const [currentCollections, setCollections] = useState([]);
+  const [currentIssues, setIssues] = useState([]);
   // console.log("history.location.pathname", props.history.location.pathname);
-  const currentProjectId = parseInt(
+  const currentCollectionId = parseInt(
     props.history.location.pathname.slice(
-      13,
+      12,
       props.history.location.pathname.length
     )
   );
   // console.log("project Id is ", currentProjectId);
   // get collection projectLink from project id that is pushed to end of route then call api and get all collection for that project
   //API call
-  const loadCollections = (id) => {
-    API.getCollectionsByProjectId(id).then((res) => {
-      setCollections(res.data);
+  const loadIssues = (id) => {
+    API.getIssuesByCollectionId(id).then((res) => {
+      setIssues(res.data);
       console.log(res.data);
     });
   };
   // now make an empty issue collection tile then render all into it
   return (
     <>
-      {currentCollections.map((collection) => {
+      {currentIssues.map((issues) => {
         return (
           <Grid item xs={6}>
-            <EmptyCollectionTile
+            <EmptyIssueTile
               {...props}
-              title={collection.collectionName}
-              body={collection.collectionDescription}
-              projectLink={currentProjectId}
-              id={collection.id}
+              date={issues.createdAt}
+              title={issues.issueName}
+              body={issues.issueDescription}
+              collectionLink={currentCollectionId}
+              issueId={issues.id}
             />
           </Grid>
         );
@@ -44,4 +45,4 @@ function RenderCollection(props) {
   );
 }
 
-export default RenderCollection;
+export default RenderIssues;

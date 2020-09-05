@@ -9,6 +9,10 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import { useFourThreeCardMediaStyles } from "@mui-treasury/styles/cardMedia/fourThree";
+import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
+
+import Button from "@material-ui/core/Button";
+
 import API from "../../utils/API";
 
 const useGridStyles = makeStyles(({ breakpoints }) => ({
@@ -78,36 +82,28 @@ const CustomCard = ({ classes, image, title, subtitle }) => {
 };
 
 export const EmptyCollectionCard = React.memo(function SolidGameCard(props) {
+  const {
+    button: buttonStyles,
+    ...contentStyles
+  } = useBlogTextInfoContentStyles();
   const gridStyles = useGridStyles();
   const styles = useStyles({ color: "#203f52" });
   const styles2 = useStyles({ color: "#4d137f" });
   const styles3 = useStyles({ color: "#ff9900" });
   const styles4 = useStyles({ color: "#34241e" });
   return (
-    <>
-      <Grid classes={gridStyles} container spacing={4} wrap={"nowrap"}>
-        <Grid item>
-          <CustomCard
-            classes={styles}
-            title={props.title}
-            subtitle={props.subtitle}
-            image={
-              "https://steamcdn-a.akamaihd.net/apps/dota2/images/blog/play/dota_heroes.png"
-            }
-          />
-        </Grid>
-        <Grid item>
-          <CustomCard
-            classes={styles2}
-            title={"Fortnite"}
-            subtitle={"Time to choose side!"}
-            image={
-              "https://progameguides.com/wp-content/uploads/2019/10/fortnite-outfit-scratch.jpg"
-            }
-          />
-        </Grid>
-      </Grid>
-    </>
+    <CustomCard
+      classes={styles}
+      title={props.title}
+      subtitle={props.subtitle}
+      image={
+        "https://steamcdn-a.akamaihd.net/apps/dota2/images/blog/play/dota_heroes.png"
+      }
+      onClick={(e) => {
+        e.preventDefault();
+        props.history.push(`/collection/${props.id}`);
+      }}
+    ></CustomCard>
   );
 });
 export default EmptyCollectionCard;

@@ -34,11 +34,18 @@ export default {
   getIssues: function () {
     return Axios.get("/api/issues");
   },
+  getIssuesByCollectionId: function (id) {
+    return Axios.get(`/api/issues/${id}`);
+  },
   // ==================================================== Collections
   getCollectionsByProjectId: function (id) {
     return Axios.get(`/api/issuecollections/${id}`);
   },
   createCollection: function (newCollection) {
     return Axios.post("/api/issuecollections/create", newCollection);
+  },
+  // ==================================================== Comments
+  getCommentsByIssueId: function (id) {
+    return Axios.get(`/api/comments/${id}`);
   },
 };
