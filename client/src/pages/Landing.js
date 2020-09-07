@@ -11,6 +11,7 @@ import {
 import Typography from "@material-ui/core/Typography";
 import SpringSlowFade from "../components/SpringSlowFade";
 import SpringModal from "../components/SpringModal";
+import LogoSlowFade from "../components/LogoSlowFade";
 
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: "center",
     color: "white",
-    backgroundColor: "red",
+    backgroundColor: "invisible",
     boxShadow: "none",
     fontSize: "40px",
   },
@@ -68,10 +69,11 @@ export default function Landing(props) {
         <Grid item xs={12}>
           <Paper className={classes.invisiblepaper}>SPACE</Paper>
         </Grid>
-        <Grid item xs={6}>
-          <SpringSlowFade />
+        <Grid item xs={1}></Grid>
+        <Grid item xs={12} md={5}>
+          <LogoSlowFade />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <SpringSlowFade />
           <SpringModal></SpringModal>
           <Button

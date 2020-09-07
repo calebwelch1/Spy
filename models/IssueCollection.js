@@ -21,18 +21,18 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: 999,
     },
   });
-  IssueCollection.associate = function (models) {
-    IssueCollection.belongsTo(models.Project, {
-      foreignKey: {
-        allowNull: false,
-      },
-    });
-  };
+  // IssueCollection.associate = function (models) {
+  //   IssueCollection.belongsTo(models.Project, {
+  //     foreignKey: {
+  //       allowNull: false,
+  //     },
+  //   });
+  // };
 
-  IssueCollection.associate = function (models) {
-    IssueCollection.hasMany(models.Issue, {
-      onDelete: "cascade",
-    });
-  };
+  // IssueCollection.associate = function (models) {
+  //   IssueCollection.hasMany(models.Issue, {
+  //     onDelete: "cascade",
+  //   });
+  // };
   return IssueCollection;
 };

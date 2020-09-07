@@ -40,6 +40,11 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: true,
       default: 0,
     },
+    profileImg: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      default: "TargetEyeGreenonBlack.png",
+    },
     //This is the PRIMARYKEY for the users table, name changed to userId by setting PRIMARYKEY to true//
   });
   User.associate = function (models) {

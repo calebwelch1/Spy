@@ -3,6 +3,7 @@ import API from "../utils/API";
 import EmptyIssueTile from "./MockComponents/EmptyIssueTile";
 import Grid from "@material-ui/core/Grid";
 import MenuTile from "./MockComponents/MenuTile";
+import MenuTileLight from "./MockComponents/MenuTileLight";
 
 function RenderComments(props) {
   useEffect(() => {
@@ -17,7 +18,7 @@ function RenderComments(props) {
   const loadComments = (id) => {
     API.getCommentsByIssueId(id).then((res) => {
       setComments(res.data);
-      console.log(res.data);
+      console.log("comments by issue id", res.data);
     });
   };
   // now make an empty issue collection tile then render all into it

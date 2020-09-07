@@ -20,6 +20,11 @@ export default function NewProject(props) {
     bind: bindProjectDescription,
     reset: resetProjectDescription,
   } = useInput("");
+  const {
+    value: projectImg,
+    bind: bindProjectImg,
+    reset: resetProjectImg,
+  } = useInput("");
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -27,6 +32,7 @@ export default function NewProject(props) {
     sendProjectDB();
     resetProjectName();
     resetProjectDescription();
+    resetProjectImg();
   };
 
   const sendProjectDB = () => {
@@ -34,6 +40,7 @@ export default function NewProject(props) {
       projectName: projectName,
       projectDescription: projectDescription,
       userLink: userId,
+      img: projectImg,
     };
     API.createProject(newProject)
       .then((res) => {
@@ -53,6 +60,7 @@ export default function NewProject(props) {
           Project Description:
           <Input type="text" {...bindProjectDescription} />
         </Label>
+
         <Input type="submit" value="Submit" />
       </Form>
     </Paper>

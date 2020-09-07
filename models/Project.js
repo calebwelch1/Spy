@@ -28,18 +28,18 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 999,
     },
     img: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0,
     },
   });
-  Project.associate = (models) => {
-    Project.belongsTo(models.User);
-  };
-  Project.associate = function (models) {
-    Project.hasMany(models.IssueCollection, {
-      onDelete: "cascade",
-    });
-  };
+  // Project.associate = (models) => {
+  //   Project.belongsTo(models.User);
+  // };
+  // Project.associate = function (models) {
+  //   Project.hasMany(models.IssueCollection, {
+  //     onDelete: "cascade",
+  //   });
+  // };
   return Project;
 };

@@ -77,6 +77,7 @@ router.post("/projects/create", (req, res) => {
     projectDescription: req.body.projectDescription,
     public: true,
     userLink: req.body.userLink,
+    img: req.body.img,
     _id: req.body.userLink,
   })
     .then((result) => {

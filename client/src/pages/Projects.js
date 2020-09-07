@@ -25,7 +25,8 @@ import ProjectTile from "../components/MockComponents/ProjectTile";
 import RenderUserProjects from "../components/RenderUserProjects";
 import RenderSeedProjects from "../components/RenderSeedProjects";
 import RenderProjectsConditional from "../components/RenderProjectsConditional";
-
+import ImageSpring from "../components/ImageSpring";
+import NewProjectTile from "../components/MockComponents/NewProjectTile";
 import { AuthProvider, AuthContext } from "../AuthContext";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -223,6 +224,12 @@ function Main(props) {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <NewProject />
+          </Grid>
+          <Grid item xs={12}>
+            <ImageSpring />
+          </Grid>
+          <Grid item xs={12}>
+            <NewProjectTile></NewProjectTile>
           </Grid>
           <RenderProjectsConditional {...props} />
         </Grid>
