@@ -5,7 +5,7 @@ import { AuthProvider, AuthContext } from "../AuthContext";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
-function RenderUserProjects() {
+function RenderUserProjects(props) {
   const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
 
   const [userProjects, setUserProjects] = useState([]);
@@ -45,7 +45,7 @@ function RenderUserProjects() {
               author={`by ${author}`}
               id={project.id}
               img={project.img}
-
+              {...props}
               // route to new page where issue collection loads.
               //   route={}
             />

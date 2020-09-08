@@ -8,17 +8,56 @@ import TextInfoContent from "@mui-treasury/components/content/textInfo";
 import { useFourThreeCardMediaStyles } from "@mui-treasury/styles/cardMedia/fourThree";
 import { useN04TextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/n04";
 import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
-
+import SpyLogo1 from "../../assets/Backgrounds/BrightEyeWhitebluegradient.png";
+import SpyLogo2 from "../../assets/Backgrounds/BrightEyeWhiteGreenGradient.png";
+import SpyLogo3 from "../../assets/Backgrounds/BrightEyeWhitebluegradient.png";
+import SpyLogo4 from "../../assets/Backgrounds/BrightEyeWhiteorangegradient.png";
+import SpyLogo5 from "../../assets/Backgrounds/BrightEyeWhitePinkBlue.png";
+import SpyLogo6 from "../../assets/Backgrounds/CrossEyeBlueGradient.png";
+import SpyLogo7 from "../../assets/Backgrounds/CrossEyeBlueonBlack.png";
+import SpyLogo8 from "../../assets/Backgrounds/CrossEyeBlueonWhite.png";
+import SpyLogo9 from "../../assets/Backgrounds/CrossEyeOrangegradient.png";
+import SpyLogo10 from "../../assets/Backgrounds/CrossEyeOrangeonblack.png";
+import SpyLogo11 from "../../assets/Backgrounds/CrossEyePinkonblack.png";
+import SpyLogo12 from "../../assets/Backgrounds/CrossEyeWhiteBlueGradient.png";
+import SpyLogo13 from "../../assets/Backgrounds/CrossEyeWhitegradientbluepink.png";
+import SpyLogo14 from "../../assets/Backgrounds/CrossEyeWhitegreengradient.png";
+import SpyLogo15 from "../../assets/Backgrounds/CrossEyeWhiteonBlack.png";
+import SpyLogo16 from "../../assets/Backgrounds/CrossEyeWhitepinkGradient.png";
+import SpyLogo17 from "../../assets/Backgrounds/TargetEyeGreenonBlack.png";
+import SpyLogo18 from "../../assets/Backgrounds/TargetEyePurpleonBlack.png";
+const backgroundArr = [
+  SpyLogo1,
+  SpyLogo2,
+  SpyLogo3,
+  SpyLogo4,
+  SpyLogo5,
+  SpyLogo6,
+  SpyLogo7,
+  SpyLogo8,
+  SpyLogo9,
+  SpyLogo10,
+  SpyLogo11,
+  SpyLogo12,
+  SpyLogo13,
+  SpyLogo14,
+  SpyLogo15,
+  SpyLogo16,
+  SpyLogo17,
+  SpyLogo18,
+];
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
     maxWidth: 343,
+    maxHeight: 500,
     margin: "auto",
     borderRadius: 12,
     padding: 12,
     boxShadow: "0px 14px 80px rgba(191, 192, 222 0.2)",
     color: "#fff",
     background: "#333",
-    display: "flex",
+    display: "grid",
+    overflow: "hidden",
     flexDirection: "column",
     alignItems: "center",
     paddingBottom: spacing(2),
@@ -46,9 +85,7 @@ export const EmptyCollectionTile = React.memo(function MusicCard(props) {
     >
       <CardMedia
         className={cx(styles.media, mediaStyles.root)}
-        image={
-          "https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80"
-        }
+        image={backgroundArr[props.img]}
       />
       <CardContent>
         <TextInfoContent

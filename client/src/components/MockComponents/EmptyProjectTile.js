@@ -151,9 +151,22 @@ export const EmptyProjectTile = React.memo(function BlogCard(props) {
       <CardContent>
         <TextInfoContent
           classes={contentStyles}
-          overline={<p className={styles.white}>{props.author}</p>}
-          heading={<p className={styles.white}> {props.heading}</p>}
-          body={<p className={styles.white}>{props.body}</p>}
+          overline={
+            <p fullWidth="true" className={styles.white}>
+              {props.author}
+            </p>
+          }
+          heading={
+            <p fullWidth="true" className={styles.white}>
+              {" "}
+              {props.heading}
+            </p>
+          }
+          body={
+            <p fullWidth="true" className={styles.white}>
+              {props.body}
+            </p>
+          }
         />
         <Button
           className={buttonStyles}

@@ -101,8 +101,6 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
 }));
 
 export const NewProjectTile = React.memo(function BlogCard(props) {
-  const [age, setAge] = React.useState("");
-
   const darkTheme = useDarkTheme();
   const darkStyle = {
     backgroundColor: darkTheme ? "#1c1c1c" : "#F5F5F5",
@@ -162,9 +160,6 @@ export const NewProjectTile = React.memo(function BlogCard(props) {
       .catch((err) => console.log(err));
   };
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
   return (
     <Card className={cx(styles.root, shadowStyles.root)}>
       <CardMedia className={styles.media} image={SpyLogoW}></CardMedia>

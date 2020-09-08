@@ -29,13 +29,14 @@ function RenderCollection(props) {
     <>
       {currentCollections.map((collection) => {
         return (
-          <Grid item xs={6}>
+          <Grid item xs={6} md={4}>
             <EmptyCollectionTile
               {...props}
               title={collection.collectionName}
               body={collection.collectionDescription}
               projectLink={currentProjectId}
               id={collection.id}
+              img={collection.img}
             />
           </Grid>
         );

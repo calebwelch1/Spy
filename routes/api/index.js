@@ -181,6 +181,8 @@ router.post("/issuecollections/create", (req, res) => {
     collectionName: req.body.collectionName,
     collectionDescription: req.body.collectionDescription,
     projectLink: req.body.projectLink,
+    userLink: req.body.userLink,
+    img: req.body.img,
   }).then((newCollection) => {
     res.json(newCollection);
   });

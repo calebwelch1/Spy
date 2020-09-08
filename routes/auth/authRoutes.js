@@ -20,6 +20,10 @@ router.post("/signup", (req, res) => {
     lastName: req.body.lastName,
     email: req.body.email,
     password: req.body.password,
+    issuesCompleteCount: 0,
+    projectsCompleteCount: 0,
+    commentsCount: 0,
+    profileImg: 0,
   })
     .then((dbResponse) => {
       res.json(dbResponse);
@@ -45,6 +49,11 @@ router.get("/user_data", (req, res) => {
     res.json({
       email: req.user.email,
       id: req.user.id,
+      firstName: req.body.firstName,
+      issueCompleteCount: req.body.issueCompleteCount,
+      projectsCompleteCount: req.body.projectsCompleteCount,
+      commentsCount: req.body.commentsCount,
+      profileImg: req.body.profileImg,
     });
   }
 });

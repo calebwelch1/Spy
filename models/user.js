@@ -41,9 +41,9 @@ module.exports = function (sequelize, DataTypes) {
       default: 0,
     },
     profileImg: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
-      default: "TargetEyeGreenonBlack.png",
+      default: 0,
     },
     //This is the PRIMARYKEY for the users table, name changed to userId by setting PRIMARYKEY to true//
   });
