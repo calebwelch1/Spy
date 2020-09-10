@@ -171,63 +171,9 @@ function Main(props) {
   return (
     <div className={classes.root} style={darkStyle}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} style={darkStyle}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Spy Issue Tracking
-          </Typography>
-          <DarkThemeButton />
-        </Toolbar>
-      </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <NewProject />
-          </Grid>
-          <Grid item xs={12}>
-            <ImageSpring />
-          </Grid>
           <Grid item xs={12}>
             <NewProjectTile></NewProjectTile>
           </Grid>

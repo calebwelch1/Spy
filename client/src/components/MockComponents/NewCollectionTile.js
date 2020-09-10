@@ -6,6 +6,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import TextInfoContent from "@mui-treasury/components/content/textInfo";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
+import Grid from "@material-ui/core/Grid";
 
 import { useFourThreeCardMediaStyles } from "@mui-treasury/styles/cardMedia/fourThree";
 import { useN04TextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/n04";
@@ -100,6 +101,12 @@ export const NewCollectionTile = React.memo(function MusicCard(props) {
   };
 
   return (
+    // <Grid
+    //   item
+    //   xs
+    //   component={Card}
+    //   className={cx(styles.root, shadowStyles.root)}
+    // >
     <Card className={cx(styles.root, shadowStyles.root)}>
       <CardMedia
         className={cx(styles.media, mediaStyles.root)}

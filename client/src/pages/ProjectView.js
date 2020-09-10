@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import RenderCollection from "../components/RenderCollection";
 import CollectionCard from "../components/MockComponents/CollectionCard";
 import CreateNewCollection from "../components/CreateNewCollection";
@@ -31,11 +31,17 @@ import RenderProjectsConditional from "../components/RenderProjectsConditional";
 import ImageSpring from "../components/ImageSpring";
 import NewProjectTile from "../components/MockComponents/NewProjectTile";
 import DarkThemeButton from "../components/DarkThemeButton";
+import NavTabs from "../components/NavTabs";
+import NavTabHome from "../components/NavTabHome";
+import API from "../utils/API";
+import MenuTile from "../components/MockComponents/MenuTile";
+import GridListComponent from "../components/MockComponents/GridList";
 
 import { AuthProvider, AuthContext } from "../AuthContext";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import NewCollectionTile from "../components/MockComponents/NewCollectionTile";
+import DraggableList from "../components/MockComponents/DraggableList";
 // find a way to push project id on click so when this page renders it renders the related issue Collections
 
 import {
@@ -48,6 +54,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    flexDirection: "column",
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
@@ -109,128 +116,54 @@ function ProjectView(props) {
   };
   // To effect these components, have to access outside the return
   // also need to add directly to icons!!!
-  const drawer = (
-    <div style={darkStyle}>
-      <div className={classes.toolbar} />
-      <Divider style={darkDividerStyle} />
-      <List>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/main");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Home
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/projects");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          My Projects
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/groups");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Groups
-        </ListItem>
-
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/settings");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Settings
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button>Bottom List!</ListItem>
-      </List>
-    </div>
-  );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
+  useEffect(() => {
+    loadProjectInfo(currentProjectId);
+  }, []);
+  const [currentProjectName, setCurrentProjectName] = useState([]);
+  // console.log("history.location.pathname", props.history.location.pathname);
+  const currentProjectId = parseInt(
+    props.history.location.pathname.slice(
+      13,
+      props.history.location.pathname.length
+    )
+  );
+  // console.log("project Id is ", currentProjectId);
+  // get collection projectLink from project id that is pushed to end of route then call api and get all collection for that project
+  //API call
+  const loadProjectInfo = (id) => {
+    API.getProjectById(id).then((res) => {
+      setCurrentProjectName(res.data[0].projectName);
+      // console.log("project info", res.data[0].projectName);
+    });
+  };
   return (
     <div className={classes.root} style={darkStyle}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} style={darkStyle}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Spy Issue Tracking
-          </Typography>
-          <DarkThemeButton />
-        </Toolbar>
-      </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
+
       <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
+        <Grid container={true} spacing={3} alignItems="stretch">
+          <Grid item xs={4} display="flex"></Grid>
+          <Grid item xs={4} display="flex">
+            <NavTabHome {...props} />
+          </Grid>
+          <Grid item xs={4} display="flex"></Grid>
+          <Grid item xs={4} display="flex"></Grid>
+
+          <Grid item xs={4} display="flex">
+            <MenuTile title={currentProjectName} />
+          </Grid>
+          <Grid item xs={4} display="flex"></Grid>
+          <Grid item xs={12} display="flex">
             <NewCollectionTile {...props} />
           </Grid>
+          <Grid item xs={12} display="flex">
+            {" "}
+          </Grid>
+
           <RenderCollection {...props} />
         </Grid>
       </main>

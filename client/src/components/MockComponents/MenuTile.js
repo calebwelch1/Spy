@@ -117,6 +117,8 @@ export const MenuTile = React.memo(function BlogCard(props) {
     <Card className={cx(styles.root, shadowStyles.root)}>
       <CardContent className={styles.center}>
         <Typography variant="h5" component="h2" className={styles.center}>
+          <h1 className={styles.white}>{props.title}</h1>
+
           <p className={styles.white}>{props.body} </p>
         </Typography>
       </CardContent>

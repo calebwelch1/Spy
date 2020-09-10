@@ -21,7 +21,7 @@ function RenderIssues(props) {
   const loadIssues = (id) => {
     API.getIssuesByCollectionId(id).then((res) => {
       setIssues(res.data);
-      console.log(res.data);
+      console.log("from render issues", res.data);
     });
   };
   // now make an empty issue collection tile then render all into it

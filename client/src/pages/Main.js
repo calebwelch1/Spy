@@ -29,7 +29,17 @@ import {
   useDarkTheme,
   useDarkThemeUpdate,
 } from "../components/ThemeContextProvider.js";
-
+import NavTabs from "../components/NavTabs.js";
+import MainPage from "./MainPage";
+import Home from "./Home";
+import Signup from "./Signup";
+import Login from "./Login";
+import Members from "./Members";
+import Landing from "./Landing";
+import Projects from "./Projects";
+import Settings from "./Settings";
+import ProjectView from "./ProjectView";
+import CollectionView from "./CollectionView";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -161,7 +171,8 @@ function Main(props) {
   return (
     <div className={classes.root} style={darkStyle}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} style={darkStyle}>
+
+      {/* <AppBar position="fixed" className={classes.appBar} style={darkStyle}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -177,74 +188,10 @@ function Main(props) {
           </Typography>
           <DarkThemeButton />
         </Toolbar>
-      </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
+      </AppBar> */}
+
       <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <HomeTile body={"PLEASE RENDER"} />
-            {/* How I'm getting the user id for the projects lmfao */}
-            {JSON.stringify(userId)}
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <HomeTile body="Nav" />
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <HomeTile body="Nav"></HomeTile>
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <HomeTile body="Nav" />
-          </Grid>
-          <Grid item xs={6} md={3}>
-            <HomeTile body="Nav" />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <HomeTile body="Stats" />
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <HomeTile body="Stats"></HomeTile>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <HomeTile body="Stats" />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <HomeTile body="charts" />
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <HomeTile body="charts" />
-          </Grid>
-        </Grid>
+        <NavTabs {...props} />
       </main>
     </div>
   );

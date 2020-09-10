@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import cx from "clsx";
 import { blueGrey } from "@material-ui/core/colors";
 import NoSsr from "@material-ui/core/NoSsr";
@@ -8,6 +8,12 @@ import Button from "@material-ui/core/Button";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
 import IssueDialog from "./IssueDialog";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
+import { useInput } from "../hooks/inputHook";
+import Form from "react-bootstrap/Form";
+import Label from "@material-ui/core/FormLabel";
+import Input from "@material-ui/core/Input";
+import API from "../../utils/API";
+import { AuthProvider, AuthContext } from "../../AuthContext";
 
 const useButtonStyles = makeStyles(() => ({
   root: {
@@ -71,13 +77,45 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export const EmptyIssueTile = React.memo(function SysiCard(props) {
+export const NewIssueTile = React.memo(function SysiCard(props) {
+  const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
+
   const {
     button: buttonStyles,
     ...contentStyles
   } = useBlogTextInfoContentStyles();
   const styles = useStyles();
   const btnStyles = useButtonStyles();
+
+  const { value: issue, bind: bindIssue, reset: resetIssue } = useInput("");
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    alert(`Submitting Issue ${issue}`);
+    sendIssueDB();
+    resetIssue();
+  };
+  const currentCollectionId = parseInt(
+    props.history.location.pathname.slice(
+      12,
+      props.history.location.pathname.length
+    )
+  );
+  const sendIssueDB = () => {
+    const newIssue = {
+      issueName: "issue",
+      issueDescription: issue,
+      userLink: userId,
+      issueComplete: false,
+      collectionLink: currentCollectionId,
+    };
+    API.createIssue(newIssue)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <NoSsr></NoSsr>
@@ -92,9 +130,18 @@ export const EmptyIssueTile = React.memo(function SysiCard(props) {
             {props.title}{" "}
           </Item>
           <Item>
-            <Box px={1} mt={1} className={cx(styles.titleFont)}>
-              {props.body}
-            </Box>
+            <Form onSubmit={handleSubmit}>
+              <Label className={styles.white}>
+                Issue:
+                <Input
+                  type="text"
+                  fullWidth="true"
+                  className={styles.white}
+                  {...bindIssue}
+                />
+              </Label>
+              <Input className={buttonStyles} type="submit" value="Submit" />
+            </Form>
           </Item>
           <Row wrap gap={1} px={2} pb={2}>
             <Item grow>
@@ -104,7 +151,7 @@ export const EmptyIssueTile = React.memo(function SysiCard(props) {
                 color="invisble"
                 fullWidth
               >
-                <IssueDialog {...props} />
+                Create Issue
               </Button>
             </Item>
             <Item grow>
@@ -118,4 +165,4 @@ export const EmptyIssueTile = React.memo(function SysiCard(props) {
     </>
   );
 });
-export default EmptyIssueTile;
+export default NewIssueTile;

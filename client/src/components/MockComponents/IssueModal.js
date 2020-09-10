@@ -7,6 +7,8 @@ import { useSpring, animated } from "react-spring/web.cjs"; // web.cjs is requir
 import Button from "@material-ui/core/Button";
 import { blueGrey } from "@material-ui/core/colors";
 import Paper from "@material-ui/core/Paper";
+import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
+
 import {
   createMuiTheme,
   responsiveFontSizes,
@@ -105,7 +107,10 @@ Fade.propTypes = {
 
 export default function SpringModal(props) {
   // make call to API for issue, render issue and all comments below, allow ability to add new comment
-
+  const {
+    button: buttonStyles,
+    ...contentStyles
+  } = useBlogTextInfoContentStyles();
   const btnStyles = useButtonStyles();
 
   const classes = useStyles();
@@ -122,9 +127,10 @@ export default function SpringModal(props) {
   return (
     <div>
       <Button
-        classes={btnStyles}
+        classes={buttonStyles}
         variant={"contained"}
-        color={"primary"}
+        color="none"
+        backgroundColor="transparent"
         fullWidth
         onClick={handleOpen}
       >
@@ -148,6 +154,7 @@ export default function SpringModal(props) {
             <p id="spring-modal-description">react-spring animates me.</p>
           </Paper> */}
           <RenderComments {...props} />
+          <p>HELLLLLLLOOOOO</p>
         </Fade>
       </Modal>
     </div>

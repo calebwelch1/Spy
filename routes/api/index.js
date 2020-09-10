@@ -45,7 +45,6 @@ router.get("/projects/:id", (req, res) => {
   db.Project.findAll({
     where: {
       id: req.params.id,
-      include: [db.User.id],
     },
   })
     .then((dbProject) => {
@@ -126,10 +125,12 @@ router.get("/user/projects/:id", (req, res) => {
 
 router.post("/issues/create", (req, res) => {
   db.Issue.create({
-    issueTitle: req.body.issueTitle,
-    issueBody: req.body.issueBody,
+    issueName: req.body.issueName,
+    issueDescription: req.body.issueDescription,
     issueComplete: false,
     issueInProgress: false,
+    collectionLink: req.body.collectionLink,
+    userLink: req.body.userLink,
   })
     .then((result) => {
       res.json(result);
