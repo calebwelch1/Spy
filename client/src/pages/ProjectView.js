@@ -41,7 +41,6 @@ import { AuthProvider, AuthContext } from "../AuthContext";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import NewCollectionTile from "../components/MockComponents/NewCollectionTile";
-import DraggableList from "../components/MockComponents/DraggableList";
 // find a way to push project id on click so when this page renders it renders the related issue Collections
 
 import {
