@@ -6,6 +6,9 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
+import EmptyComment from "./EmptyComment";
+import RenderComments from "../RenderComments";
+import NewComment from "./NewComment";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -25,7 +28,7 @@ export default function IssueDialog(props) {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Slide in alert dialog
+        Open Issue
       </Button>
       <Dialog
         open={open}
@@ -42,9 +45,12 @@ export default function IssueDialog(props) {
           <DialogContentText id="alert-dialog-slide-description">
             Let Google help apps determine location. This means sending
             anonymous location data to Google, even when no apps are running.
+            <EmptyComment {...props} />
+            <RenderComments {...props} />
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+          <NewComment {...props} issueId={props.issueId} />
           <Button onClick={handleClose} color="primary">
             Disagree
           </Button>

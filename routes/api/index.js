@@ -189,7 +189,7 @@ router.post("/issuecollections/create", (req, res) => {
   });
 });
 //@ update collection
-///================================ Collections
+///================================ Comments
 //@@@@ Get comments by issue id
 router.get("/comments/:id", (req, res) => {
   db.Comment.findAll({
@@ -198,5 +198,13 @@ router.get("/comments/:id", (req, res) => {
     },
   }).then((comments) => {
     res.json(comments);
+  });
+});
+//@@@@ Create Comment
+router.post("/comments/create", (req, res) => {
+  db.Comment.create({
+    comment: req.body.comment,
+    issueLink: req.body.issueLink,
+    userLink: req.body.userLink,
   });
 });

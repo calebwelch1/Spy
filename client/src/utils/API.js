@@ -51,4 +51,7 @@ export default {
   getCommentsByIssueId: function (id) {
     return Axios.get(`/api/comments/${id}`);
   },
+  createComment: function (newComment) {
+    return Axios.post("/api/comments/create", newComment);
+  },
 };

@@ -104,7 +104,7 @@ export const EmptyIssueTile = React.memo(function SysiCard(props) {
                 color="invisble"
                 fullWidth
               >
-                <IssueDialog {...props} />
+                <IssueDialog issueId={props.issueId} {...props} />
               </Button>
             </Item>
             <Item grow>

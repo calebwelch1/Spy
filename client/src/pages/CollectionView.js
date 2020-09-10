@@ -193,7 +193,6 @@ function CollectionView(props) {
           <Grid item xs={4} display="flex">
             <NewIssueTile {...props} />
             <EmptyIssueTile {...props} />
-            <EmptyComment />
           </Grid>
           <Grid item xs={4} display="flex"></Grid>
           <Grid item xs={12}></Grid>
