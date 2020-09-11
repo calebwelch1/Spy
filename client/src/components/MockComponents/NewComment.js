@@ -76,12 +76,7 @@ function NewComment(props) {
       <Form onSubmit={handleSubmit}>
         <Label className={styles.white}>
           Comment:
-          <Input
-            type="text"
-            fullWidth="true"
-            className={styles.white}
-            {...bindComment}
-          />
+          <Input type="text" fullWidth="true" {...bindComment} />
         </Label>
         <Input className={buttonStyles} type="submit" value="Submit" />
       </Form>

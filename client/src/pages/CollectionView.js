@@ -37,7 +37,7 @@ import Label from "@material-ui/core/FormLabel";
 import Input from "@material-ui/core/Input";
 import NewProjectTile from "../components/MockComponents/NewProjectTile";
 import NewIssueTile from "../components/MockComponents/NewIssueTile";
-
+import NavTabCollection from "../components/NavTabCollection";
 import DarkThemeButton from "../components/DarkThemeButton";
 
 import { AuthProvider, AuthContext } from "../AuthContext";
@@ -191,8 +191,16 @@ function CollectionView(props) {
         <Grid container spacing={3}>
           <Grid item xs={4} display="flex"></Grid>
           <Grid item xs={4} display="flex">
+            <NavTabCollection {...props} />
+          </Grid>
+          <Grid item xs={4} display="flex"></Grid>
+          <Grid item xs={4} display="flex"></Grid>
+          <Grid
+            item
+            xs={4}
+            style={{ alignItems: "center", textAlign: "center" }}
+          >
             <NewIssueTile {...props} />
-            <EmptyIssueTile {...props} />
           </Grid>
           <Grid item xs={4} display="flex"></Grid>
           <Grid item xs={12}></Grid>

@@ -32,6 +32,7 @@ const LoginForm = (props) => {
       .then((user) => {
         console.log("login response ", user);
         setIsAuth(true);
+        setCredsAreInvalid("Success!");
       })
       .catch((err) => {
         setCredsAreInvalid(errorMessage);
@@ -65,7 +66,7 @@ const LoginForm = (props) => {
         <Form.Text className="text-danger">{credsAreInvalid}</Form.Text>
       </Form.Group>
       <Button className="m-1" variant="primary" type="submit">
-        Submit
+        Login
       </Button>
       <Button
         className="m-1"
@@ -76,7 +77,7 @@ const LoginForm = (props) => {
       >
         Signup
       </Button>
-      <Button
+      {/* <Button
         className="m-1"
         onClick={(e) => {
           e.preventDefault();
@@ -84,7 +85,7 @@ const LoginForm = (props) => {
         }}
       >
         Home
-      </Button>
+      </Button> */}
     </Form>
   );
 };

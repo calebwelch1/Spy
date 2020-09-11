@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,7 +18,10 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-
+import Avatar from "@material-ui/core/Avatar";
+import { AuthProvider, AuthContext } from "../AuthContext";
+import API from "../utils/API";
+import MenuTile from "../components/MockComponents/MenuTile";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
 // add custom dark theme
@@ -25,7 +29,44 @@ import {
   useDarkTheme,
   useDarkThemeUpdate,
 } from "../components/ThemeContextProvider.js";
-
+import SpyLogo1 from "../assets/Backgrounds/BrightEyeWhitebluegradient.png";
+import SpyLogo2 from "../assets/Backgrounds/BrightEyeWhiteGreenGradient.png";
+import SpyLogo3 from "../assets/Backgrounds/BrightEyeWhitebluegradient.png";
+import SpyLogo4 from "../assets/Backgrounds/BrightEyeWhiteorangegradient.png";
+import SpyLogo5 from "../assets/Backgrounds/BrightEyeWhitePinkBlue.png";
+import SpyLogo6 from "../assets/Backgrounds/CrossEyeBlueGradient.png";
+import SpyLogo7 from "../assets/Backgrounds/CrossEyeBlueonBlack.png";
+import SpyLogo8 from "../assets/Backgrounds/CrossEyeBlueonWhite.png";
+import SpyLogo9 from "../assets/Backgrounds/CrossEyeOrangegradient.png";
+import SpyLogo10 from "../assets/Backgrounds/CrossEyeOrangeonblack.png";
+import SpyLogo11 from "../assets/Backgrounds/CrossEyePinkonblack.png";
+import SpyLogo12 from "../assets/Backgrounds/CrossEyeWhiteBlueGradient.png";
+import SpyLogo13 from "../assets/Backgrounds/CrossEyeWhitegradientbluepink.png";
+import SpyLogo14 from "../assets/Backgrounds/CrossEyeWhitegreengradient.png";
+import SpyLogo15 from "../assets/Backgrounds/CrossEyeWhiteonBlack.png";
+import SpyLogo16 from "../assets/Backgrounds/CrossEyeWhitepinkGradient.png";
+import SpyLogo17 from "../assets/Backgrounds/TargetEyeGreenonBlack.png";
+import SpyLogo18 from "../assets/Backgrounds/TargetEyePurpleonBlack.png";
+const backgroundArr = [
+  SpyLogo1,
+  SpyLogo2,
+  SpyLogo3,
+  SpyLogo4,
+  SpyLogo5,
+  SpyLogo6,
+  SpyLogo7,
+  SpyLogo8,
+  SpyLogo9,
+  SpyLogo10,
+  SpyLogo11,
+  SpyLogo12,
+  SpyLogo13,
+  SpyLogo14,
+  SpyLogo15,
+  SpyLogo16,
+  SpyLogo17,
+  SpyLogo18,
+];
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -62,6 +103,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Main(props) {
+  const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
+  const [userData, setUserData] = useState([]);
+
+  useEffect(() => {
+    loadUserData(userId);
+  }, []);
+
+  const loadUserData = (id) => {
+    API.getUserbyId(id).then((res) => {
+      setUserData(res.data[0]);
+      console.log("userdata", res.data);
+    });
+  };
+
   // dark theme
   const darkTheme = useDarkTheme();
   const darkStyle = {
@@ -80,164 +135,30 @@ function Main(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-  // To effect these components, have to access outside the return
-  // also need to add directly to icons!!!
-  const drawer = (
-    <div style={darkStyle}>
-      <div className={classes.toolbar} />
-      <Divider style={darkDividerStyle} />
-      <List>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/main");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Home
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/projects");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          My Projects
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/groups");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Groups
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/charts");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Charts
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/settings");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Settings
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button>Bottom List!</ListItem>
-      </List>
-    </div>
-  );
-
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
     <div className={classes.root} style={darkStyle}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} style={darkStyle}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Spy Issue Tracking
-          </Typography>
-          <DarkThemeButton />
-        </Toolbar>
-      </AppBar>
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>xs=12</Paper>
+          <Grid item xs={12}></Grid>
+          <Grid item xs={12} sm={12}></Grid>
+          <Grid item xs={5}></Grid>
+          <Grid item xs={4}>
+            <Avatar src={backgroundArr[userData.profileImg]} />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper className={classes.paper}>xs=12 sm=6</Paper>
+          <Grid item xs={3}></Grid>
+
+          <Grid item xs={12} sm={12}>
+            <MenuTile></MenuTile>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <Paper className={classes.paper}>xs=12 sm=6</Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          </Grid>
+          <Grid item xs={12} sm={12}></Grid>
+          <Grid item xs={12} sm={12}></Grid>
+          <Grid item xs={12} sm={12}></Grid>
         </Grid>
-        <Typography paragraph>Settings!</Typography>
       </main>
     </div>
   );

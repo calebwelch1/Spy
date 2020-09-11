@@ -6,16 +6,11 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import DarkThemeButton from "../components/DarkThemeButton";
-import {
-  useDarkTheme,
-  useDarkThemeUpdate,
-} from "../components/ThemeContextProvider.js";
+import DarkThemeButton from "./DarkThemeButton";
+import { useDarkTheme, useDarkThemeUpdate } from "./ThemeContextProvider.js";
 import Projects from "../pages/Projects";
 import MainPage from "../pages/MainPage";
 import ProjectView from "../pages/ProjectView";
-import Settings from "../pages/Settings";
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -96,31 +91,17 @@ export default function NavTabs(props) {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="Home" href="/main" {...a11yProps(0)} />
           <LinkTab
-            label="Projects"
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   props.history.push("/projects");
-            // }}
-            // href="/projects"
-            {...a11yProps(1)}
+            label="Home"
+            onClick={(e) => {
+              e.preventDefault();
+              props.history.push("/main");
+            }}
+            href="/main"
+            {...a11yProps(0)}
           />
-          <LinkTab label="Settings" href="/spam" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <MainPage {...props} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <Projects {...props} />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Settings />
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        <ProjectView />
-      </TabPanel>
     </div>
   );
 }

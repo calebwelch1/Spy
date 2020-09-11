@@ -8,16 +8,25 @@ import { AuthProvider, AuthContext } from "../AuthContext";
 
 function MainPage(props) {
   const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
-  const [userInfo, setUserInfo] = useState([]);
-
+  const [userInfo, setUserInfo] = useState([
+    { firstName: "You are not logged in" },
+  ]);
+  const [stats, setStats] = useState([]);
   useEffect(() => {
     loadUserInfo(userId);
+    loadUserStats(userId);
   }, []);
 
+  const loadUserStats = (id) => {
+    API.getAllProjectsByUser(id).then((res) => {
+      // console.log("stats", res);
+      setStats(res.data);
+    });
+  };
   const loadUserInfo = (id) => {
     API.getUserbyId(id).then((user) => {
-      console.log("get User info", user);
-      setUserInfo(user);
+      console.log("get User info", user.data[0]);
+      setUserInfo(user.data[0]);
     });
   };
 
@@ -25,29 +34,31 @@ function MainPage(props) {
     <div>
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <HomeTile body={"PLEASE RENDER"} />
+          <HomeTile body={"Welcome" + " " + userInfo.firstName} />
           {/* How I'm getting the user id for the projects lmfao */}
         </Grid>
-        <Grid item xs={6} md={3}>
-          <HomeTile body={CountDown} />
+        <Grid item xs={6} md={6}>
+          <HomeTile body="Calender" />
         </Grid>
-        <Grid item xs={6} md={3}>
-          <HomeTile body="Nav"></HomeTile>
-        </Grid>
+
         <Grid item xs={6} md={3}>
           <HomeTile body="Nav" />
         </Grid>
         <Grid item xs={6} md={3}>
           <NewDate />
-        </Grid>
-        <Grid item xs={12} md={4}>
           <HomeTile body={CountDown} />
         </Grid>
         <Grid item xs={12} md={4}>
-          <HomeTile body="Stats"></HomeTile>
+          <HomeTile title="Projects" body={stats.length}></HomeTile>
         </Grid>
         <Grid item xs={12} md={4}>
-          <HomeTile body="Stats" />
+          <HomeTile
+            title="Issues"
+            body={userInfo.issuesCompleteCount}
+          ></HomeTile>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <HomeTile title="Comments" body={userInfo.commentsCount}></HomeTile>
         </Grid>
         <Grid item xs={12} md={6}>
           <HomeTile body="charts" />

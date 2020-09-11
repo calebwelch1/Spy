@@ -75,6 +75,9 @@ const useStyles = makeStyles(() => ({
     color: "rgba(0,0,0,0.87)",
     letterSpacing: 1,
   },
+  white: {
+    color: "#fff",
+  },
 }));
 
 export const NewIssueTile = React.memo(function SysiCard(props) {
@@ -88,12 +91,16 @@ export const NewIssueTile = React.memo(function SysiCard(props) {
   const btnStyles = useButtonStyles();
 
   const { value: issue, bind: bindIssue, reset: resetIssue } = useInput("");
+  const { value: issueName, bind: bindName, reset: resetIssueName } = useInput(
+    ""
+  );
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     alert(`Submitting Issue ${issue}`);
     sendIssueDB();
     resetIssue();
+    resetIssueName();
   };
   const currentCollectionId = parseInt(
     props.history.location.pathname.slice(
@@ -103,7 +110,7 @@ export const NewIssueTile = React.memo(function SysiCard(props) {
   );
   const sendIssueDB = () => {
     const newIssue = {
-      issueName: "issue",
+      issueName: issueName,
       issueDescription: issue,
       userLink: userId,
       issueComplete: false,
@@ -132,6 +139,16 @@ export const NewIssueTile = React.memo(function SysiCard(props) {
           <Item>
             <Form onSubmit={handleSubmit}>
               <Label className={styles.white}>
+                Name:
+                <Input
+                  type="text"
+                  fullWidth="true"
+                  className={styles.white}
+                  {...bindName}
+                />
+              </Label>
+
+              <Label className={styles.white}>
                 Issue:
                 <Input
                   type="text"
@@ -140,19 +157,25 @@ export const NewIssueTile = React.memo(function SysiCard(props) {
                   {...bindIssue}
                 />
               </Label>
-              <Input className={buttonStyles} type="submit" value="Submit" />
+
+              <Input
+                className={buttonStyles}
+                type="submit"
+                value="Submit"
+                fullWidth
+              />
             </Form>
           </Item>
           <Row wrap gap={1} px={2} pb={2}>
             <Item grow>
-              <Button
+              {/* <Button
                 className={buttonStyles}
                 variant={"contained"}
                 color="invisble"
                 fullWidth
               >
                 Create Issue
-              </Button>
+              </Button> */}
             </Item>
             <Item grow>
               <Button classes={btnStyles} variant={"contained"} fullWidth>
