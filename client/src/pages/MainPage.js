@@ -9,6 +9,7 @@ import API from "../utils/API";
 import { AuthProvider, AuthContext } from "../AuthContext";
 import Paper from "@material-ui/core/Paper";
 import ResponsiveWaffle from "../components/MockComponents/ResponsiveWaffle";
+import RecentProject from "../components/MockComponents/RecentProject";
 import {
   createMuiTheme,
   responsiveFontSizes,
@@ -46,7 +47,7 @@ function MainPage(props) {
     loadUserStats(userId);
     loadIssueStats(userId);
     loadCommentStats(userId);
-  }, []);
+  }, [props.history]);
 
   const loadUserStats = (id) => {
     API.getAllProjectsByUser(id).then((res) => {
@@ -69,7 +70,7 @@ function MainPage(props) {
 
   const loadUserInfo = (id) => {
     API.getUserbyId(id).then((user) => {
-      console.log("get User info", user.data[0]);
+      // console.log("get User info", user.data[0]);
       setUserInfo(user.data[0]);
     });
   };
@@ -105,12 +106,12 @@ function MainPage(props) {
 
           {/* <HomeTile body={CountDown} /> */}
         </Grid>
-        <Grid item xs={12} md={6}>
-          <HomeTile body="charts" />
+        <Grid item xs={12} md={6} style={{ height: "500px", width: "100px" }}>
+          {/* <HomeTile body={return(<RecentProject/>)} />
+           */}
+          <RecentProject />
         </Grid>
-        <Grid item xs={12} md={6}>
-          <HomeTile body="charts" />
-        </Grid>
+        <Grid item xs={12} md={6}></Grid>
         <Grid item xs={12}>
           <InvisibleTile />
         </Grid>

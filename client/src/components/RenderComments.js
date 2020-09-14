@@ -15,7 +15,9 @@ function RenderComments(props) {
     loadUserData(userId);
   }, []);
   const [currentComments, setComments] = useState([]);
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState([
+    { firstName: "unknown", lastName: "unknown", img: 1 },
+  ]);
   // console.log("history.location.pathname", props.history.location.pathname);
   const currentIssueId = props.issueId;
   // console.log("project Id is ", currentProjectId);
@@ -24,13 +26,13 @@ function RenderComments(props) {
   const loadComments = (id) => {
     API.getCommentsByIssueId(id).then((res) => {
       setComments(res.data);
-      console.log("comments by issue id", res.data);
+      // console.log("comments by issue id", res.data);
     });
   };
   const loadUserData = (id) => {
     API.getUserbyId(id).then((res) => {
       setUserData(res.data[0]);
-      console.log("userdata", res.data);
+      // console.log("userdata", res.data);
     });
   };
 
@@ -43,9 +45,9 @@ function RenderComments(props) {
             <EmptyComment
               comment={comments.comment}
               time={comments.createdAt}
-              firstName={userData.firstName}
-              lastName={userData.lastName}
-              img={userData.profileImg}
+              firstName={userData.firstName || "unknown"}
+              lastName={userData.lastName || "unknown"}
+              img={userData.profileImg || 1}
               {...props}
             />
           </Grid>

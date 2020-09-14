@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const checkAuth = async () => {
     Axios.get("api/auth/user_data").then((response) => {
-      console.log("auth context", response.data);
+      // console.log("auth context", response.data);
       setUserId(response.data.id);
       if (response.data.email) {
         setIsAuth(true);
