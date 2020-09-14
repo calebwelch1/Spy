@@ -48,7 +48,7 @@ function NewComment(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert(`Submitting Comment ${commentBody}`);
+    // alert(`Submitting Comment ${commentBody}`);
     sendCommentDB();
     resetComment();
   };
