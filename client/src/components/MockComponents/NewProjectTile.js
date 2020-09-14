@@ -153,7 +153,7 @@ export const NewProjectTile = React.memo(function BlogCard(props) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     // alert(`Submitting Project ${projectName} ${projectDescription}`);
-    return <SubmitSnackBar />;
+    // return <SubmitSnackBar />;
     sendProjectDB();
     resetProjectName();
     resetProjectDescription();
