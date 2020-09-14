@@ -79,7 +79,7 @@ export const NewCollectionTile = React.memo(function MusicCard(props) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     // alert(`Submitting Collection ${collectionName} ${collectionDescription}`);
-    return <SubmitSnackBar />;
+    // return <SubmitSnackBar />;
     sendCollectionDB();
     resetCollectionName();
     resetCollectionDescription();

@@ -98,7 +98,7 @@ export const NewIssueTile = React.memo(function SysiCard(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert(`Submitting Issue ${issue}`);
+    // alert(`Submitting Issue ${issue}`);
     sendIssueDB();
     resetIssue();
     resetIssueName();
