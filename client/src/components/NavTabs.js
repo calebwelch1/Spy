@@ -15,7 +15,8 @@ import Projects from "../pages/Projects";
 import MainPage from "../pages/MainPage";
 import ProjectView from "../pages/ProjectView";
 import Settings from "../pages/Settings";
-
+import Logo from "../assets/search35px.png";
+import Grid from "@material-ui/core/Grid";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -109,6 +110,15 @@ export default function NavTabs(props) {
           <LinkTab label="Settings" href="/spam" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
+      <Grid container spacing={3}>
+        <Grid item xs={3} />
+        <Grid item xs={3} />
+
+        <Grid item xs={3}></Grid>
+
+        <Grid item xs={3} />
+      </Grid>
+
       <TabPanel value={value} index={0}>
         <MainPage {...props} />
       </TabPanel>

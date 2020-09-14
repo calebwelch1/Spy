@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import SpringSlowFade from "../components/SpringSlowFade";
-
+import Logo from "../assets/SearchEyeWhite.png";
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 
@@ -72,11 +72,21 @@ export class springslowfade extends Component {
   }
 }
 const Title = {
-  background: "slateblue",
-  color: "white",
+  background: "#f0f0f0",
+  color: "#1c1c1c",
   padding: "1.5rem",
   textAlign: "center",
   fontSize: "200px",
+  fontFamily:
+    "HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica",
+  fontWeight: 300,
+};
+const Body = {
+  background: "#1c1c1c",
+  color: "white",
+  padding: "1.5rem",
+  textAlign: "center",
+  fontSize: "100px",
   fontFamily:
     "HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, Helvetica",
   fontWeight: 300,

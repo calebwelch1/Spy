@@ -23,7 +23,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-
+import SubmitSnackBar from "../SubmitSnackbar";
 const useStyles = makeStyles(({ breakpoints, spacing }) => ({
   root: {
     margin: "auto",
@@ -152,7 +152,8 @@ export const NewProjectTile = React.memo(function BlogCard(props) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert(`Submitting Project ${projectName} ${projectDescription}`);
+    // alert(`Submitting Project ${projectName} ${projectDescription}`);
+    return <SubmitSnackBar />;
     sendProjectDB();
     resetProjectName();
     resetProjectDescription();

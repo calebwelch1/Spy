@@ -3,6 +3,9 @@ import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import LoginSnackBar from "../components/LoginSnackBar";
+import { SnackbarProvider, useSnackbar } from "notistack";
+import Alert from "@material-ui/lab/Alert";
 import {
   createMuiTheme,
   responsiveFontSizes,
@@ -21,19 +24,21 @@ import LoginForm from "../components/LoginForm";
 import Popover from "@material-ui/core/Popover";
 import GetStartedConditional from "../components/GetStartedConditional";
 import { AuthProvider, AuthContext } from "../AuthContext";
-
+import Logo from "../assets/search35px.png";
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    background: "#1c1c1c",
   },
   invisiblepaper: {
     padding: theme.spacing(2),
     textAlign: "center",
-    color: "white",
-    backgroundColor: "invisible",
+    color: "#1c1c1c",
+    background: "#1c1c1c",
+
     boxShadow: "none",
     fontSize: "40px",
   },
@@ -59,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "strong",
     textShadow: "2px 2px #000",
     position: "top",
+  },
+  white: {
+    color: "#fff",
   },
 }));
 
@@ -88,43 +96,55 @@ export default function Landing(props) {
   const id = open ? "simple-popover" : undefined;
   const id2 = open ? "simple-popover" : undefined;
   const { isAuth } = useContext(AuthContext);
+  // snackbars
 
   return (
-    <div className={classes.root}>
-      {/* Left */}
-      <Grid container spacing={1} container direction="row" justify="center">
-        <Grid item xs={12}>
-          <Paper className={classes.invisiblepaper}>SPACE</Paper>
-        </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.invisiblepaper}>SPACE</Paper>
-        </Grid>
-        {/* <Grid item xs={12}>
+    <SnackbarProvider>
+      <div className={classes.root}>
+        {/* Left */}
+        <Grid container spacing={1} container direction="row" justify="center">
+          <Grid item xs={12}>
+            <Paper className={classes.invisiblepaper}>SPACE</Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.invisiblepaper}>SPACE</Paper>
+          </Grid>
+          {/* <Grid item xs={12}>
           <Paper className={classes.invisiblepaper}>SPACE</Paper>
         </Grid> */}
-        <Grid item xs={12} md={12}>
-          {/* <LogoSlowFade />
-           */}
-          {/* <LandingCarousel /> */}
-        </Grid>
-        <Grid item xs={4} />
+          <Grid item xs={12} md={12}>
+            {/* <LogoSlowFade />
+             */}
+            {/* <LandingCarousel /> */}
+          </Grid>
+          <Grid item xs={4} />
+          <Grid item xs={12} md={4}>
+            <SpringSlowFade
+              onClick={(e) => {
+                e.preventDefault();
+                if (isAuth == true) {
+                  return props.history.push("/main");
+                } else {
+                  return alert("you are not logged in!");
+                }
+              }}
+            />
+            {/* <Button
+              className="m-1"
+              onClick={(e) => {
+                e.preventDefault();
+                if (isAuth == true) {
+                  return props.history.push("/main");
+                } else {
+                  return alert("you are not logged in!");
+                }
+              }}
+            >
+              <div className={classes.white}> Get Started</div>
+            </Button> */}
 
-        <Grid item xs={12} md={4}>
-          <SpringSlowFade />
-          <Button
-            className="m-1"
-            onClick={(e) => {
-              e.preventDefault();
-              if (isAuth == true) {
-                return props.history.push("/main");
-              } else {
-                return alert("you are not logged in!");
-              }
-            }}
-          >
-            Get Started,
-          </Button>
-          <Button
+            <GetStartedConditional {...props} />
+            {/* <Button
             className="m-1"
             onClick={(e) => {
               e.preventDefault();
@@ -132,69 +152,81 @@ export default function Landing(props) {
             }}
           >
             About
-          </Button>
-          <Button aria-describedby={id} onClick={handleClick}>
-            Login
-          </Button>
-          <Popover
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-          >
-            <Typography className={classes.typography}>
-              {/* The content of the Popover. */}
-              <LoginForm />
-            </Typography>
-          </Popover>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              props.history.push("/signup");
-            }}
-          >
-            Signup
-          </Button>
-          <Popover
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-          >
-            <Typography className={classes.typography}>
-              {/* The content of the Popover. */}
-              <LoginForm />
-            </Typography>
-          </Popover>
-        </Grid>
-        <Grid item xs={4} />
-        <Grid item xs={4} />
+          </Button> */}
+            <Button aria-describedby={id} onClick={handleClick}>
+              <div className={classes.white}> Login</div>
+            </Button>
+            {/* <LoginSnackBar /> */}
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+              <Typography className={classes.typography}>
+                {/* The content of the Popover. */}
+                <LoginForm />
+              </Typography>
+            </Popover>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                props.history.push("/signup");
+              }}
+            >
+              <div className={classes.white}> Signup</div>
+            </Button>
+            <Popover
+              id={id}
+              open={open}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "center",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "center",
+              }}
+            >
+              <Typography className={classes.typography}>
+                {/* The content of the Popover. */}
+                <LoginForm />
+              </Typography>
+            </Popover>
+          </Grid>
+          <Grid item xs={4} />
+          <Grid item xs={4} />
+          <Grid item xs={4} />
+          <Grid item xs={12}>
+            <Paper className={classes.invisiblepaper}>SPACE</Paper>
+          </Grid>
+          <Grid item xs={12}>
+            <Paper className={classes.invisiblepaper}>SPACE</Paper>
+          </Grid>
+          <Grid item xs={4} />
+          <Grid item xs={4}>
+            {" "}
+          </Grid>
+          <Grid item xs={4} />
+          <a href="https://calebwelch1.github.io/Portfolio/" target="_blank">
+            <img src={Logo} />
+          </a>
 
-        <Grid item xs={12} md={4}></Grid>
-        <Grid item xs={4} />
-        <Grid item xs={12}>
-          <Paper className={classes.invisiblepaper}>SPACE</Paper>
+          <Grid item xs={12}>
+            <Paper className={classes.invisiblepaper}>SPACE</Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={12}>
-          <Paper className={classes.invisiblepaper}>SPACE</Paper>
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+    </SnackbarProvider>
   );
 }

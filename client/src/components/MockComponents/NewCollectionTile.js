@@ -14,7 +14,7 @@ import { useOverShadowStyles } from "@mui-treasury/styles/shadow/over";
 import { AuthProvider, AuthContext } from "../../AuthContext";
 import { useInput } from "../hooks/inputHook";
 import SpyLogoW from "../../assets/BrightEyeWhite.png";
-
+import SubmitSnackBar from "../SubmitSnackbar";
 import Form from "react-bootstrap/Form";
 import Label from "@material-ui/core/FormLabel";
 import Input from "@material-ui/core/Input";
@@ -78,7 +78,8 @@ export const NewCollectionTile = React.memo(function MusicCard(props) {
   );
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert(`Submitting Collection ${collectionName} ${collectionDescription}`);
+    // alert(`Submitting Collection ${collectionName} ${collectionDescription}`);
+    return <SubmitSnackBar />;
     sendCollectionDB();
     resetCollectionName();
     resetCollectionDescription();
