@@ -26,8 +26,8 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     boxShadow: "0px 14px 80px rgba(191, 192, 222 0.2)",
     maxWidth: 500,
     overflow: "initial",
-    color: "#333",
-    background: "#bfbbb8",
+    color: "#fff",
+    background: "#1c1c1c",
     flexDirection: "column",
     alignItems: "center",
     paddingBottom: spacing(2),
@@ -114,14 +114,12 @@ export const MenuTile = React.memo(function BlogCard(props) {
   } = useBlogTextInfoContentStyles();
   const shadowStyles = useOverShadowStyles();
   return (
-    <Card className={cx(styles.root, shadowStyles.root)}>
+    <Card className={cx(styles.root)} elevation={0}>
       <CardContent className={styles.center}>
         <Typography variant="h5" component="h2" className={styles.center}>
-          <h1>{props.superTitle}</h1>
+          <h1 className={styles.white}>{props.title}</h1>
 
-          <h1>{props.title}</h1>
-
-          <p>{props.body} </p>
+          <p className={styles.white}>{props.body} </p>
         </Typography>
       </CardContent>
     </Card>

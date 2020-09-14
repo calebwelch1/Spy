@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
+import InvisibleTile from "../components/MockComponents/InvisibleTile";
+
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
@@ -24,6 +26,8 @@ import API from "../utils/API";
 import MenuTile from "../components/MockComponents/MenuTile";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
+import RenderCalendar from "../components/MockComponents/ResponsiveCalendar";
+
 // add custom dark theme
 import {
   useDarkTheme,
@@ -139,7 +143,10 @@ function Main(props) {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div className={classes.root} style={darkStyle}>
+    <div
+      className={classes.root}
+      // style={darkStyle}
+    >
       <CssBaseline />
       <main className={classes.content}>
         <div className={classes.toolbar} />

@@ -23,7 +23,7 @@ const useStyles = makeStyles(({ breakpoints, spacing }) => ({
     margin: "auto",
     borderRadius: spacing(2), // 16px
     transition: "0.3s",
-    boxShadow: "0px 14px 80px rgba(191, 192, 222 0.2)",
+    boxShadow: "0px 14px 80px rgba(120,120,120 0.1)",
     maxWidth: 500,
     overflow: "initial",
     color: "#fff",
@@ -117,6 +117,8 @@ export const MenuTile = React.memo(function BlogCard(props) {
     <Card className={cx(styles.root, shadowStyles.root)}>
       <CardContent className={styles.center}>
         <Typography variant="h5" component="h2" className={styles.center}>
+          <h1 className={styles.white}>{props.superTitle}</h1>
+
           <h1 className={styles.white}>{props.title}</h1>
 
           <p className={styles.white}>{props.body} </p>

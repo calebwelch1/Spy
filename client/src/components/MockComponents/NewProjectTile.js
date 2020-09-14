@@ -119,7 +119,20 @@ export const NewProjectTile = React.memo(function BlogCard(props) {
     ...contentStyles
   } = useBlogTextInfoContentStyles();
   const shadowStyles = useOverShadowStyles();
-  const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
+  const {
+    isAuth,
+    setIsAuth,
+    userId,
+    setUserId,
+    isUpdated,
+    setIsUpdated,
+  } = useContext(AuthContext);
+  const update = () => {
+    setIsUpdated(true);
+  };
+  const unUpdate = () => {
+    setIsUpdated(false);
+  };
 
   const {
     value: projectName,
@@ -193,7 +206,14 @@ export const NewProjectTile = React.memo(function BlogCard(props) {
             />
           </Label>
 
-          <Input className={buttonStyles} type="submit" value="Submit" />
+          <Input
+            className={buttonStyles}
+            type="submit"
+            value="Submit"
+            onClick={(e) => {
+              window.location.reload(false);
+            }}
+          />
         </Form>
       </CardContent>
     </Card>

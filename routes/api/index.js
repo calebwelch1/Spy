@@ -26,6 +26,21 @@ router.get("/users/:id", (req, res) => {
     res.json(dbusers);
   });
 });
+///@@@ update issueCompleteCount
+router.put("/users/:id/updateIssueCount", (req, res) => {
+  db.User.update(
+    {
+      issuesCompleteCount: req.body.issuesCompleteCount,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  ).then(function (dbPost) {
+    res.json(dbPost);
+  });
+});
 //==================== Projects =====================//
 //@@@@@ get all
 router.get("/projects", (req, res) => {
@@ -119,6 +134,7 @@ router.get("/projects/user/:id", (req, res) => {
       res.json(err);
     });
 });
+
 //==================== Issues =====================//
 // @@@ Create an issue ********************************** Also refuses to work
 // get "User.id cannot be blank error"
@@ -148,6 +164,21 @@ router.get("/issues", (req, res) => {
     res.json(dbissues);
   });
 });
+//@@@@@ get all issues by user
+router.get("/issues/user/:id", (req, res) => {
+  db.Issue.findAll({
+    where: {
+      userLink: req.params.id,
+    },
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 //@@@@ Get issues by collection Link
 router.get("/issues/:id", (req, res) => {
   db.Issue.findAll({
@@ -158,7 +189,35 @@ router.get("/issues/:id", (req, res) => {
     res.json(issues);
   });
 });
-//@@@@ Get issues by User
+//@@@@ Delete Issues
+router.delete("/issues/:id", (req, res) => {
+  db.Issue.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+//@@@@@ Update an issue to complete
+router.put("/issues/update/:id", (req, res) => {
+  db.Issue.update(
+    {
+      issueComplete: true,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  ).then((issue) => {
+    res.json(issue);
+  });
+});
 ///================================ Collections
 //@@@@ get all
 router.get("/issuecollections", (req, res) => {
@@ -207,4 +266,18 @@ router.post("/comments/create", (req, res) => {
     issueLink: req.body.issueLink,
     userLink: req.body.userLink,
   });
+});
+//@@@@@ get comments by user
+router.get("/comments/user/:id", (req, res) => {
+  db.Comment.findAll({
+    where: {
+      userLink: req.params.id,
+    },
+  })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });

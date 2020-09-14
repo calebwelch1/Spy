@@ -76,6 +76,14 @@ const useStyles = makeStyles((theme) => ({
   white: {
     color: "#fff",
   },
+  invisiblepaper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: "white",
+    backgroundColor: "invisible",
+    boxShadow: "none",
+    fontSize: "40px",
+  },
 }));
 
 function Main(props) {

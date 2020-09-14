@@ -28,6 +28,7 @@ import RenderProjectsConditional from "../components/RenderProjectsConditional";
 import ImageSpring from "../components/ImageSpring";
 import NewProjectTile from "../components/MockComponents/NewProjectTile";
 import { AuthProvider, AuthContext } from "../AuthContext";
+import InvisibleTile from "../components/MockComponents/InvisibleTile";
 
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DarkThemeButton from "../components/DarkThemeButton";
@@ -178,6 +179,18 @@ function Main(props) {
             <NewProjectTile></NewProjectTile>
           </Grid>
           <RenderProjectsConditional {...props} />
+          <Grid item xs={12}>
+            <InvisibleTile />
+          </Grid>
+          <Grid item xs={12}>
+            <InvisibleTile />
+          </Grid>
+          <Grid item xs={12}>
+            <InvisibleTile />
+          </Grid>
+          <Grid item xs={12}>
+            <InvisibleTile />
+          </Grid>
         </Grid>
       </main>
     </div>

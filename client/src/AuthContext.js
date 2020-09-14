@@ -7,6 +7,7 @@ export const AuthContext = React.createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = useState(false);
   const [userId, setUserId] = useState([]);
+  const [isUpdated, setIsUpdated] = useState(false);
   // modifying to also set user id to state when authorized
 
   useEffect(() => {
@@ -37,7 +38,16 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuth, setIsAuth, checkAuth, logout, userId, setUserId }}
+      value={{
+        isAuth,
+        setIsAuth,
+        checkAuth,
+        logout,
+        userId,
+        setUserId,
+        isUpdated,
+        setIsUpdated,
+      }}
     >
       {children}
     </AuthContext.Provider>

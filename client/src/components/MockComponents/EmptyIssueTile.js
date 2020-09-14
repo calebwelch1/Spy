@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import cx from "clsx";
 import { blueGrey } from "@material-ui/core/colors";
 import NoSsr from "@material-ui/core/NoSsr";
@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 import { Column, Row, Item } from "@mui-treasury/components/flex";
 import IssueDialog from "./IssueDialog";
 import { useBlogTextInfoContentStyles } from "@mui-treasury/styles/textInfoContent/blog";
+import API from "../../utils/API";
+import { AuthProvider, AuthContext } from "../../AuthContext";
 
 const useButtonStyles = makeStyles(() => ({
   root: {
@@ -69,9 +71,53 @@ const useStyles = makeStyles(() => ({
     color: "rgba(0,0,0,0.87)",
     letterSpacing: 1,
   },
+  completed: {
+    opacity: "1",
+  },
 }));
 
 export const EmptyIssueTile = React.memo(function SysiCard(props) {
+  const [userIssues, setUserIssues] = useState("");
+  useEffect(() => {
+    callUser(userId);
+  }, []);
+  const {
+    isAuth,
+    setIsAuth,
+    userId,
+    setUserId,
+    isUpdated,
+    setIsUpdated,
+  } = useContext(AuthContext);
+  const completeStyle = {
+    opacity: props.issueComplete ? ".3" : "1",
+  };
+  const deleteIssue = (id) => {
+    API.deleteIssueById(id).then((res) => {
+      console.log("issue deleted");
+    });
+  };
+  const completeIssue = (id) => {
+    API.updateIssueComplete(id).then((res) => {
+      alert("issue updated");
+    });
+  };
+  const updateCompleteCount = (id) => {
+    count();
+    const updatedIssue = { issuesCompleteCount: parseInt(userIssues) };
+    API.updateIssuesComplete(id, updatedIssue).then((res) => {
+      // alert("complete count updated");
+      console.log("updted coutn");
+    });
+  };
+  const callUser = (id) => {
+    API.getUserbyId(id).then((res) => {
+      setUserIssues(res.data.issuesCompleteCount);
+    });
+  };
+  const count = () => {
+    setUserIssues(userIssues + 1);
+  };
   const {
     button: buttonStyles,
     ...contentStyles
@@ -81,7 +127,7 @@ export const EmptyIssueTile = React.memo(function SysiCard(props) {
   return (
     <>
       <NoSsr></NoSsr>
-      <Box maxWidth={343}>
+      <Box maxWidth={343} style={completeStyle}>
         <Column p={0} gap={3} className={styles.card}>
           <Item>
             <h2 className={cx(styles.titleFont, styles.header)}>
@@ -112,8 +158,16 @@ export const EmptyIssueTile = React.memo(function SysiCard(props) {
               </Button>
             </Item>
             <Item grow>
-              <Button classes={btnStyles} variant={"contained"} fullWidth>
-                Add Clear Here
+              <Button
+                classes={btnStyles}
+                variant={"contained"}
+                fullWidth
+                onClick={(e) => {
+                  e.preventDefault();
+                  completeIssue(props.issueId);
+                }}
+              >
+                Complete Issue
               </Button>
             </Item>
           </Row>

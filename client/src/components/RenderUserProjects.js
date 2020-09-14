@@ -6,7 +6,14 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 
 function RenderUserProjects(props) {
-  const { isAuth, setIsAuth, userId, setUserId } = useContext(AuthContext);
+  const {
+    isAuth,
+    setIsAuth,
+    userId,
+    setUserId,
+    isUpdated,
+    setIsUpdated,
+  } = useContext(AuthContext);
 
   const [userProjects, setUserProjects] = useState([]);
   const [author, setAuthor] = useState("");
@@ -17,20 +24,20 @@ function RenderUserProjects(props) {
   useEffect(() => {
     loadUserProjects(userId);
     getAuthor(userId);
-  }, [isAuth]);
+  }, [isAuth, isUpdated]);
 
   const loadUserProjects = (id) => {
     API.getAllProjectsByUser(id).then((res) => {
       setUserProjects(res.data);
-      console.log("all user projects from the RENDER USER PROJECTS", res);
+      // console.log("all user projects from the RENDER USER PROJECTS", res);
     });
   };
   const getAuthor = (id) => {
     API.getUserbyId(id).then((res) => {
-      console.log(
-        "getAuthor response.data[0].firstName",
-        res.data[0].firstName
-      );
+      // console.log(
+      //   "getAuthor response.data[0].firstName",
+      //   res.data[0].firstName
+      // );
       setAuthor(res.data[0].firstName);
     });
   };

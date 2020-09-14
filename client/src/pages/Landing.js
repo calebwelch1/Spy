@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles, withTheme } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
@@ -19,6 +19,9 @@ import LogoSlowFade from "../components/LogoSlowFade";
 import LandingCarousel from "../components/LandingCarousel";
 import LoginForm from "../components/LoginForm";
 import Popover from "@material-ui/core/Popover";
+import GetStartedConditional from "../components/GetStartedConditional";
+import { AuthProvider, AuthContext } from "../AuthContext";
+
 let theme = createMuiTheme();
 theme = responsiveFontSizes(theme);
 
@@ -84,6 +87,7 @@ export default function Landing(props) {
 
   const id = open ? "simple-popover" : undefined;
   const id2 = open ? "simple-popover" : undefined;
+  const { isAuth } = useContext(AuthContext);
 
   return (
     <div className={classes.root}>
@@ -111,7 +115,11 @@ export default function Landing(props) {
             className="m-1"
             onClick={(e) => {
               e.preventDefault();
-              props.history.push("/main");
+              if (isAuth == true) {
+                return props.history.push("/main");
+              } else {
+                return alert("you are not logged in!");
+              }
             }}
           >
             Get Started,
@@ -147,7 +155,14 @@ export default function Landing(props) {
               <LoginForm />
             </Typography>
           </Popover>
-          <Button onClick={handleClick}>Signup</Button>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              props.history.push("/signup");
+            }}
+          >
+            Signup
+          </Button>
           <Popover
             id={id}
             open={open}

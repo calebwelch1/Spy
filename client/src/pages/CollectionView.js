@@ -39,6 +39,7 @@ import NewProjectTile from "../components/MockComponents/NewProjectTile";
 import NewIssueTile from "../components/MockComponents/NewIssueTile";
 import NavTabCollection from "../components/NavTabCollection";
 import DarkThemeButton from "../components/DarkThemeButton";
+import InvisibleTile from "../components/MockComponents/InvisibleTile";
 
 import { AuthProvider, AuthContext } from "../AuthContext";
 
@@ -117,67 +118,6 @@ function CollectionView(props) {
   };
   // To effect these components, have to access outside the return
   // also need to add directly to icons!!!
-  const drawer = (
-    <div style={darkStyle}>
-      <div className={classes.toolbar} />
-      <Divider style={darkDividerStyle} />
-      <List>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/main");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Home
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/projects");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          My Projects
-        </ListItem>
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/groups");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Groups
-        </ListItem>
-
-        <ListItem
-          button
-          onClick={(e) => {
-            e.preventDefault();
-            props.history.push("/settings");
-          }}
-        >
-          <ListItemIcon>
-            <HomeIcon style={darkIconStyle} />
-          </ListItemIcon>
-          Settings
-        </ListItem>
-      </List>
-      <Divider />
-      <List>
-        <ListItem button>Bottom List!</ListItem>
-      </List>
-    </div>
-  );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
@@ -192,6 +132,11 @@ function CollectionView(props) {
           <Grid item xs={4} display="flex"></Grid>
           <Grid item xs={4} display="flex">
             <NavTabCollection {...props} />
+          </Grid>
+          <Grid item xs={4} display="flex"></Grid>
+          <Grid item xs={4} display="flex"></Grid>
+          <Grid item xs={4} display="flex">
+            <InvisibleTile body="Create an Issue" />
           </Grid>
           <Grid item xs={4} display="flex"></Grid>
           <Grid item xs={4} display="flex"></Grid>

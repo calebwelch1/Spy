@@ -146,6 +146,7 @@ export const NewCollectionTile = React.memo(function MusicCard(props) {
             className={buttonStyles}
             type="submit"
             value="Create Collection"
+            onClick={() => window.location.reload(false)}
           />
         </Form>
       </CardContent>

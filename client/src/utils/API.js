@@ -11,6 +11,12 @@ export default {
   getUserbyId: function (id) {
     return Axios.get(`/api/users/${id}`);
   },
+  updateIssuesComplete: function (id, updatedIssue) {
+    return Axios.put(`/api/users/${id}/updateIssueCount`, updatedIssue);
+  },
+  getAllIssuesByUser: function (id) {
+    return Axios.get(`/api/issues/user/${id}`);
+  },
   // ==================================================== Projects
   getProjects: function () {
     return Axios.get("/api/projects");
@@ -40,6 +46,12 @@ export default {
   createIssue: function (newIssue) {
     return Axios.post("/api/issues/create", newIssue);
   },
+  deleteIssueById: function (id) {
+    return Axios.delete(`/api/issues/${id}`);
+  },
+  updateIssueComplete: function (id) {
+    return Axios.put(`/api/issues/update/${id}`);
+  },
   // ==================================================== Collections
   getCollectionsByProjectId: function (id) {
     return Axios.get(`/api/issuecollections/${id}`);
@@ -53,5 +65,8 @@ export default {
   },
   createComment: function (newComment) {
     return Axios.post("/api/comments/create", newComment);
+  },
+  getAllCommentsByUser: function (id) {
+    return Axios.get(`/api/comments/user/${id}`);
   },
 };

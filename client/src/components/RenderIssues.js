@@ -29,7 +29,7 @@ function RenderIssues(props) {
     <>
       {currentIssues.map((issues) => {
         return (
-          <Grid item xs={6}>
+          <Grid item xs={6} md={3} style={{ display: "fixed" }}>
             <EmptyIssueTile
               {...props}
               date={issues.createdAt}
@@ -37,6 +37,7 @@ function RenderIssues(props) {
               body={issues.issueDescription}
               collectionLink={currentCollectionId}
               issueId={issues.id}
+              issueComplete={issues.issueComplete}
             />
           </Grid>
         );

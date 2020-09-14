@@ -13,6 +13,7 @@ import Form from "react-bootstrap/Form";
 import Label from "@material-ui/core/FormLabel";
 import Input from "@material-ui/core/Input";
 import API from "../../utils/API";
+import Grid from "@material-ui/core/Grid";
 import { AuthProvider, AuthContext } from "../../AuthContext";
 
 const useButtonStyles = makeStyles(() => ({
@@ -126,65 +127,41 @@ export const NewIssueTile = React.memo(function SysiCard(props) {
   return (
     <>
       <NoSsr></NoSsr>
-      <Box maxWidth={343}>
-        <Column p={0} gap={3} className={styles.card}>
-          <Item>
-            <h2 className={cx(styles.titleFont, styles.header)}>
-              {props.date}
-            </h2>
-          </Item>
-          <Item py={1} bgcolor={"rgb(255, 189, 128)"} className={buttonStyles}>
-            {props.title}{" "}
-          </Item>
-          <Item>
-            <Form onSubmit={handleSubmit}>
-              <Label className={styles.white}>
-                Name:
-                <Input
-                  type="text"
-                  fullWidth="true"
-                  className={styles.white}
-                  {...bindName}
-                />
-              </Label>
+      <Grid container spacing={3}>
+        <Form onSubmit={handleSubmit}>
+          <Label className={styles.white} color="#fff">
+            Name:
+            <Input
+              type="text"
+              fullWidth="true"
+              className={styles.white}
+              {...bindName}
+            />
+          </Label>
 
-              <Label className={styles.white}>
-                Issue:
-                <Input
-                  type="text"
-                  fullWidth="true"
-                  className={styles.white}
-                  {...bindIssue}
-                />
-              </Label>
+          <Label className={styles.white}>
+            Issue:
+            <Input
+              type="text"
+              fullWidth="true"
+              className={styles.white}
+              {...bindIssue}
+            />
+          </Label>
 
-              <Input
-                className={buttonStyles}
-                type="submit"
-                value="Submit"
-                fullWidth
-              />
-            </Form>
-          </Item>
-          <Row wrap gap={1} px={2} pb={2}>
-            <Item grow>
-              {/* <Button
-                className={buttonStyles}
-                variant={"contained"}
-                color="invisble"
-                fullWidth
-              >
-                Create Issue
-              </Button> */}
-            </Item>
-            <Item grow>
-              <Button classes={btnStyles} variant={"contained"} fullWidth>
-                Add Clear Here
-              </Button>
-            </Item>
-          </Row>
-        </Column>
-      </Box>
+          <Input
+            className={buttonStyles}
+            type="submit"
+            value="Submit"
+            fullWidth
+            onClick={() => window.location.reload(false)}
+          />
+        </Form>
+
+        <Button classes={btnStyles} variant={"contained"} fullWidth>
+          Add Clear Here
+        </Button>
+      </Grid>
     </>
   );
 });
