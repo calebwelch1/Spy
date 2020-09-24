@@ -41,12 +41,6 @@ Spy Issue Tracker you can create and track projects easily with clean mobile foc
 - [Axios](https://www.npmjs.com/package/axios)
 - [Material UI](https://material-ui.com/)
 
-## Additional Technologies/Resources
-
-## Demo
-
-![gif1](https://media.giphy.com/media/VDAuv7bMueJSBo4rMc/giphy.gif)
-
 ## License
 
 MIT License
@@ -85,6 +79,8 @@ Deployed project Link
 
 *https://spyissuetracker.herokuapp.com/*
 Credits:
+
+## Additional Technologies/Resources
 
 Freepik, freepik.com for svg logo
 
